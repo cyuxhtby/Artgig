@@ -11,19 +11,18 @@ import {
 import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";
 import { Signin } from "./Signin";
-import { AnnouncementBanner } from "./AnnouncementBanner";
+
 
 export const Navbar: React.FC = () => {
   const { data: cart, isLoading } = useCart();
 
   return (
     <>
-      <AnnouncementBanner />
       <Container
-        maxW="container.page"
+        maxW="100%"
         position="sticky"
         top={0}
-        bg="#0E0E10"
+        bg="#FFFFFF"
         zIndex={1}
       >
         <Flex
@@ -36,8 +35,12 @@ export const Navbar: React.FC = () => {
         >
           <Link href="/">
             <Flex gap={4} justifyContent="center" alignItems="center">
-              <Image src="/store-logo.svg" alt="logo" h={10} />
-              <Text>Commerce Reimagined</Text>
+              <Image src="/artgig.svg" alt="logo" h={12} />
+            </Flex>
+          </Link>
+          <Link href="/collectables">
+            <Flex gap={4} justifyContent="center" alignItems="center">
+              <Text color="black">Collectables</Text>
             </Flex>
           </Link>
           <Flex
@@ -56,6 +59,7 @@ export const Navbar: React.FC = () => {
                   zIndex={2}
                   size="md"
                   variant="ghost"
+                  color="black"
                 />
                 <Badge
                   zIndex={4}
