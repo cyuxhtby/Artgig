@@ -6,7 +6,6 @@ import {
   useAddress,
   useNFT,
   ThirdwebNftMedia,
-  ConnectWallet
 } from "@thirdweb-dev/react";
 import {
     Box,
@@ -27,7 +26,7 @@ const Mint: React.FC = () => {
   // Render loading state
   if (isLoading) {
     console.log(error);
-    return <Box>Loading...</Box>;
+    return <Box justifyContent="center">Loading...</Box>;
   } 
   
   // Render error state
@@ -38,10 +37,6 @@ const Mint: React.FC = () => {
     <Flex direction="column" align="center" justify="center">
       <ThirdwebNftMedia metadata={nft.metadata} width="6rem" />
       <Text my={4}>Lovley NFT</Text> {/* Replace "NFT Title" with the actual title of your NFT */}
-      <ConnectWallet
-      theme="dark"
-      btnTitle="Connect Wallet"
-      />
       <Web3Button
         contractAddress={contractAddress}
         action={() =>
