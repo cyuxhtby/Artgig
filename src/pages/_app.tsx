@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
 import {
   APP_NETWORK,
   DOMAIN,
@@ -60,6 +61,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Container maxW="container.page">
           <Component {...pageProps} />
         </Container>
+        <Sidebar/>
       </ThirdwebProvider>
     </ChakraProvider>
   );

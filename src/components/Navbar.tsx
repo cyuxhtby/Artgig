@@ -34,13 +34,8 @@ export const Navbar: React.FC = () => {
           py={7}
         >
           <Link href="/">
-            <Flex gap={4} justifyContent="center" alignItems="center">
-              <Image src="/artgig.svg" alt="logo" h={12} />
-            </Flex>
-          </Link>
-          <Link href="/collectables">
-            <Flex gap={4} justifyContent="center" alignItems="center">
-              <Text color="black">Collectables</Text>
+            <Flex gap={4} justifyContent="center" alignItems="center" paddingLeft="90px">
+              <Image src="/artgig.svg" alt="logo" h={16} />
             </Flex>
           </Link>
           <Flex

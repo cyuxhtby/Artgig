@@ -6,6 +6,7 @@ import {
   useAddress,
   useNFT,
   ThirdwebNftMedia,
+  ConnectWallet
 } from "@thirdweb-dev/react";
 import {
     Box,
@@ -21,7 +22,7 @@ const Mint: React.FC = () => {
   const address = useAddress();
   const { contract } = useContract(contractAddress);
   const { mutateAsync: claimNft } = useClaimNFT(contract);
-  const { data: nft, isLoading, error } = useNFT(contract, "0");
+  const { data: nft, isLoading, error } = useNFT(contract, '0');
   
   // Render loading state
   if (isLoading) {
@@ -34,22 +35,26 @@ const Mint: React.FC = () => {
 
   return (
     <Container>
-      <Flex direction="column" align="center" justify="center">
-        <ThirdwebNftMedia metadata={nft.metadata} width="6rem" />
-        <Text my={4}>NFT Title</Text> {/* Replace "NFT Title" with the actual title of your NFT */}
-        <Button
-          colorScheme="blue"
-          onClick={() =>
-            claimNft({
-              to: address, // Use useAddress hook to get current wallet address
-              quantity: 1, // Amount of NFTs to claim
-            })
-          }
-        >
-          Mint Now
-        </Button>
-      </Flex>
-    </Container>
+    <Flex direction="column" align="center" justify="center">
+      <ThirdwebNftMedia metadata={nft.metadata} width="6rem" />
+      <Text my={4}>Lovley NFT</Text> {/* Replace "NFT Title" with the actual title of your NFT */}
+      <ConnectWallet
+      theme="dark"
+      btnTitle="Connect Wallet"
+      />
+      <Web3Button
+        contractAddress={contractAddress}
+        action={() =>
+          claimNft({
+            to: address, // Use useAddress hook to get current wallet address
+            quantity: 1, // Amount of NFTs to claim
+          })
+        }
+      >
+        Mint Now
+      </Web3Button>
+    </Flex>
+  </Container>
   );
 }
 
