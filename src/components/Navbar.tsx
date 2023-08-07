@@ -34,8 +34,8 @@ export const Navbar: React.FC = () => {
           py={7}
         >
           <Link href="/">
-            <Flex gap={4} justifyContent="center" alignItems="center" paddingLeft="90px">
-              <Image src="/artgig.svg" alt="logo" h={16} />
+            <Flex gap={4} justifyContent="center" alignItems="center" >
+              <Image src="/artgig.svg" alt="logo" h={14} />
             </Flex>
           </Link>
           <Flex
@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => {
                   icon={<FiShoppingCart />}
                   aria-label="cart-btn"
                   zIndex={2}
-                  size="md"
+                  size="s"
                   variant="ghost"
                   color="black"
                 />

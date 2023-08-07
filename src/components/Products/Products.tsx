@@ -20,7 +20,7 @@ export const Products: React.FC<ProductsProps> = ({ products }) => {
   }
 
   return (
-    <SimpleGrid minChildWidth="300px" spacing={20} mb={24}>
+    <SimpleGrid minChildWidth="300px" spacing={10} mb={24}>
       {products?.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

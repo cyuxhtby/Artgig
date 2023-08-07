@@ -16,13 +16,13 @@ const Sidebar = () => {
     <>
       <IconButton 
         aria-label="Open Sidebar"
-        icon={isOpen ? <AiOutlineCaretLeft /> : <AiFillCaretRight />}
+        icon={isOpen ? <AiOutlineCaretLeft/> : <AiFillCaretRight/>}
         onClick={isOpen ? onClose : onOpen}
         color="black"
         bg="white"
-        width="10px"
-        height="70px"
-        borderRightRadius="10px"
+        minWidth="20px"
+        height="40px"
+        borderRadius="0px"
         position="fixed"
         left={isOpen ? "250px" : "0"} // Adjust the left position based on the isOpen state
         top="50%"
