@@ -1,3 +1,4 @@
+import ParticleAnimation from "@/components/ParticleAnimation";
 import { Products } from "@/components/Products/Products";
 import { getAllProducts } from "@/lib/shopify";
 import { GraphQLProducts, Product } from "@/types";
@@ -12,9 +13,12 @@ export default function Home({ products }: { products: Product[] }) {
   })
 
   return (
+    <div>
+    <ParticleAnimation/>
     <Flex direction="column">
       <Products products={customOrderToProducts} />
     </Flex>
+    </div>
   );
 }
 

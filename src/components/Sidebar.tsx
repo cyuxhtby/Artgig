@@ -24,7 +24,7 @@ const Sidebar = () => {
         height="40px"
         borderRadius="0px"
         position="fixed"
-        left={isOpen ? "250px" : "0"} // Adjust the left position based on the isOpen state
+        left={isOpen ? "300px" : "0"} // Adjust the left position based on the isOpen state
         top="50%"
         transform="translateY(-50%)"
         transition="left 0.5s" // Add a transition effect to the left property
