@@ -9,7 +9,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { FiShoppingCart } from "react-icons/fi";
+import { FiShoppingBag } from "react-icons/fi";
+
 import { Signin } from "./Signin";
 
 
@@ -44,24 +45,27 @@ export const Navbar: React.FC = () => {
             alignItems="center"
             gap={6}
           >
+            <Signin />
             {!isLoading && (
               <Box position="relative">
                 <IconButton
                   as={Link}
                   href="/cart"
-                  icon={<FiShoppingCart />}
+                  icon={<FiShoppingBag/>}
                   aria-label="cart-btn"
                   zIndex={2}
                   size="s"
                   variant="ghost"
                   color="black"
+                  padding="5px"
                 />
                 <Badge
                   zIndex={4}
                   position="absolute"
                   top={0}
                   right={0}
-                  transform="translate(33%, -33%)"
+                  transform="translate(50%, -50%)"
+                  color="black"
                 >
                   {cart?.lines?.edges?.reduce((acc, curr) => {
                     return acc + curr.node.quantity;
@@ -69,7 +73,6 @@ export const Navbar: React.FC = () => {
                 </Badge>
               </Box>
             )}
-            <Signin />
           </Flex>
         </Flex>
       </Container>
