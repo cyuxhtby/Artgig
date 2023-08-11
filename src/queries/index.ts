@@ -23,6 +23,10 @@ export const PRODUCTS_QUERY = `query products {
               }
             }
           }
+          assetContract: metafield(namespace: "collectable", key: "asset_contract") {
+            value
+            type
+          }
         }
       }
     }
@@ -52,6 +56,10 @@ export const PRODUCT_QUERY = `#graphql
             title
           }
         }
+      }
+      assetContract: metafield(namespace: "collectable", key: "asset_contract") {
+        value
+        type
       }
     }
   }

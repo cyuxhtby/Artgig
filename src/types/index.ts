@@ -25,6 +25,7 @@ export type GraphQLProducts = {
           };
         }[];
       };
+      assetContract: Metafield; 
     };
   }[];
 };
@@ -121,4 +122,9 @@ export type GraphQLOrders = {
       };
     }[];
   };
+};
+
+export type Metafield = {
+  value: string; 
+  type: string; 
 };
