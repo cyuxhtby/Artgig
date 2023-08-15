@@ -9,4 +9,6 @@ export const NFT_RECEIPTS_ADDRESS =
 export const RELAYER_URL = process.env.NEXT_PUBLIC_OPENZEPPELIN_URL || "";
 // paper wallet client ID (to enable email wallet)
 export const PAPER_CLIENT_ID = process.env.NEXT_PUBLIC_PAPER_CLIENT_ID || "";
+// thirdweb client id (to use certain thirdweb services)
+export const THIRDWEB_CLIENT_ID = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID || ""; 
 
