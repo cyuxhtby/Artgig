@@ -5,6 +5,7 @@ import {
   DOMAIN,
   PAPER_CLIENT_ID,
   RELAYER_URL,
+  THIRDWEB_CLIENT_ID,
 } from "@/lib/environment-variables";
 import theme from "@/theme";
 import { ChakraProvider, Container } from "@chakra-ui/react";
@@ -13,19 +14,18 @@ import {
   paperWallet,
   SDKOptions,
   ThirdwebProvider,
-  Wallet,
 } from "@thirdweb-dev/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
 const paperWalletConfig = paperWallet({
-  clientId: PAPER_CLIENT_ID,
+  paperClientId: PAPER_CLIENT_ID,
 });
 paperWalletConfig.meta.name = "Email";
 paperWalletConfig.meta.iconURL = "https://ipfs.thirdwebcdn.com/ipfs/QmUUoZxPuAgxKHeT5cCY4vwmN8sZRiV9ptzBhuM47Y24NY/email%20wallet%20shopify.png";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const supportedWallets: Wallet[] = [
+  const supportedWallets = [
     ...(PAPER_CLIENT_ID
       ? [
         paperWalletConfig,
@@ -53,6 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
         authConfig={authConfig}
         sdkOptions={sdkOptions}
         activeChain={APP_NETWORK || "mumbai"}
+        clientId={THIRDWEB_CLIENT_ID}
       >
         <Head>
           <title>Commerce Reimagined</title>
