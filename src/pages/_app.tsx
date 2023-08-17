@@ -6,6 +6,7 @@ import {
   PAPER_CLIENT_ID,
   RELAYER_URL,
   THIRDWEB_CLIENT_ID,
+  THIRDWEB_SECRET_KEY
 } from "@/lib/environment-variables";
 import theme from "@/theme";
 import { ChakraProvider, Container } from "@chakra-ui/react";
@@ -45,7 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
       },
     }
     : undefined;
-
+    
   return (
     <ChakraProvider theme={theme}>
       <ThirdwebProvider
@@ -54,6 +55,7 @@ export default function App({ Component, pageProps }: AppProps) {
         sdkOptions={sdkOptions}
         activeChain={APP_NETWORK || "mumbai"}
         clientId={THIRDWEB_CLIENT_ID}
+        secretKey={THIRDWEB_SECRET_KEY}
       >
         <Head>
           <title>Commerce Reimagined</title>

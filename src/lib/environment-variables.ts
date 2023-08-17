@@ -11,4 +11,7 @@ export const RELAYER_URL = process.env.NEXT_PUBLIC_OPENZEPPELIN_URL || "";
 export const PAPER_CLIENT_ID = process.env.NEXT_PUBLIC_PAPER_CLIENT_ID || "";
 // thirdweb client id (to use certain thirdweb services)
 export const THIRDWEB_CLIENT_ID = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID || ""; 
+// thirdweb client secret key (if using on server)
+export const THIRDWEB_SECRET_KEY = process.env.NEXT_PUBLIC_THIRDWEB_SECRET_KEY || ""; 
+
 

@@ -37,7 +37,7 @@ export const Signin = ({ ...rest }) => {
     }
     try {
       await connect({
-        clientId: PAPER_CLIENT_ID,
+        paperClientId: PAPER_CLIENT_ID,
       });
     } catch (e) {
       console.error(e);

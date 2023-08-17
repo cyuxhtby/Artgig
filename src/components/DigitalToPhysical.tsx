@@ -69,7 +69,7 @@ export const DigitalToPhysical: React.FC<DigitalToPhysicalProps> = ({ product, a
       {activeView === 'product' && (
         <>
           {/* Mobile render */}
-          <Box display={{ base: "block", lg: "none" }} width="100%" maxWidth="50vh" height="100%" overflow="hidden">
+          <Box display={{ base: "block", lg: "none" }} width="100%" maxWidth="50vh" height="100%" overflow="hidden" zIndex="0">
                 <Swiper {...swiperParams} onSwiper={handleSwiperInstance} style={{width: '100%', height: '100%'}}>
                     {product.images.edges.map((imageEdge, index) => (
                         <SwiperSlide key={index} style={{  display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden'}} >
