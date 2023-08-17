@@ -8,7 +8,7 @@ export const PRODUCTS_QUERY = `query products {
           description
           tags
           productType
-          images(first: 1) {
+          images(first: 10) {
             edges {
               node {
                 originalSrc
@@ -20,6 +20,10 @@ export const PRODUCTS_QUERY = `query products {
             edges {
               node {
                 id
+                priceV2 {
+                  amount
+                  currencyCode
+                }
               }
             }
           }
@@ -41,7 +45,7 @@ export const PRODUCT_QUERY = `#graphql
       handle
       description
       tags
-      images(first: 1) {
+      images(first: 10) {
         edges {
           node {
             originalSrc
@@ -54,6 +58,10 @@ export const PRODUCT_QUERY = `#graphql
           node {
             id
             title
+            priceV2 {
+              amount
+              currencyCode
+            }
           }
         }
       }
@@ -371,7 +379,7 @@ export const GET_PRODUCT_BY_ID_QUERY = `#graphql
       handle
       description
       tags
-      images(first: 1) {
+      images(first: 10) {
         edges {
           node {
             originalSrc
@@ -384,6 +392,10 @@ export const GET_PRODUCT_BY_ID_QUERY = `#graphql
           node {
             id
             title
+            priceV2 {
+              amount
+              currencyCode
+            }
           }
         }
       }

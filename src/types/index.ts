@@ -22,6 +22,10 @@ export type GraphQLProducts = {
           node: {
             id: string;
             title: string;
+            priceV2: { 
+              amount: string;
+              currencyCode: string;
+            };
           };
         }[];
       };
