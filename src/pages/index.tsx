@@ -1,5 +1,5 @@
-import ParticleAnimation from "@/components/ParticleAnimation";
 import { Products } from "@/components/Products/Products";
+import  Hero  from "@/components/Hero";
 import { getAllProducts } from "@/lib/shopify";
 import { GraphQLProducts, Product } from "@/types";
 import { Flex } from "@chakra-ui/react";
@@ -14,7 +14,9 @@ export default function Home({ products }: { products: Product[] }) {
 
   return (
     <div>
-    <ParticleAnimation/>
+      <div style={{padding: "20px"}}>
+      <Hero headline="Digital + Physical Goods"/>
+      </div>
     <Flex direction="column">
       <Products products={customOrderToProducts} />
     </Flex>

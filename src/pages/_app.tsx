@@ -58,7 +58,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <Head>
           <title>Commerce Reimagined</title>
         </Head>
-        <Navbar />
+        <Navbar/>
+        
         <Container maxW="container.page">
           <Component {...pageProps} />
         </Container>

@@ -10,7 +10,7 @@ import {
   Link,
   Flex,
 } from '@chakra-ui/react';
-import { AiFillCaretRight, AiOutlineCaretLeft } from 'react-icons/ai';
+import { AiFillCaretRight } from 'react-icons/ai';
 
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

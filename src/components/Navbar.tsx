@@ -21,10 +21,11 @@ export const Navbar: React.FC = () => {
     <>
       <Container
         maxW="100%"
+        maxH="50%"
         position="sticky"
         top={0}
         bg="#FFFFFF"
-        zIndex={1}
+        zIndex={10}
       >
         <Flex
           w="full"
@@ -45,7 +46,7 @@ export const Navbar: React.FC = () => {
             alignItems="center"
             gap={6}
           >
-            <Signin />
+            <Signin style={{zindex: 5}}/>
             {!isLoading && (
               <Box position="relative">
                 <IconButton

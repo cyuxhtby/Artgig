@@ -4,6 +4,7 @@ const theme = extendTheme({
   config: {
     initialColorMode: "dark",
     useSystemColorMode: false,
+    cssVarPrefix: "artgig",
   },
   fonts: {
     body: "Inter, sans-serif",
@@ -35,6 +36,13 @@ const theme = extendTheme({
     container: {
       page: "1170px",
     },
+  },
+  breakpoints: {
+    xs: "320px",
+    sm: "480px",   
+    lg: "1024px",
+    xl: "1280px",
+    "2xl": "1536px",
   },
 });
 

@@ -4,6 +4,9 @@ import { UpsellModal } from "@/CommerceKit/Upsells/UpsellModal";
 import { NFT_RECEIPTS_ADDRESS } from "@/lib/environment-variables";
 import { getAllProducts, getProductByHandle } from "@/lib/shopify";
 import { GraphQLProducts, Product } from "@/types";
+import { FiPackage } from "react-icons/fi";
+import { RiVipDiamondFill } from "react-icons/ri";
+
 import {
   Box,
   Container,
@@ -15,11 +18,15 @@ import {
   useDisclosure,
   useNumberInput,
   useToast,
+  IconButton,
 } from "@chakra-ui/react";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import { useState } from "react";
 import { mutate } from "swr";
+import { DigitalToPhysical } from "@/components/DigitalToPhysical";
+
+
 
 const Product: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   product,
@@ -39,9 +46,12 @@ const Product: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const incrementProps = getIncrementButtonProps();
   const decrementProps = getDecrementButtonProps();
   const inputProps = getInputProps();
-  const [selectedSize, setSelectedSize] = useState(
-    product?.variants?.edges?.[0].node,
-  );
+  const [selectedSize, setSelectedSize] = useState({
+    id: product?.variants?.edges?.[0].node.id,
+    title: product?.variants?.edges?.[0].node.title
+  });
+
+  const [activeView, setActiveView] = useState<'product' | 'nft'>('product');
 
   const isGated = product?.tags?.includes("gated");
 
@@ -86,57 +96,84 @@ const Product: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   return (
     <GateComponent gateContractAddress={NFT_RECEIPTS_ADDRESS}>
       <Container
-        maxW={{
-          base: "100%",
-          lg: "container.page",
-        }}
+        maxW={{ base: "100vw", lg: "container.page" }} px={0} py={6} 
       >
-        <Box mt={8}>
+        <Box mt={4}>
           <Link href="/">
-            <Text color="#646D7A">&larr; Back to all products</Text>
+            <Text color="#646D7A" mb={4}>&larr; Back to all products</Text>
           </Link>
-          <Flex gap={4} mt={14}>
-            <Box w="60%">
-              <Image
-                src={product?.images.edges[0].node.originalSrc}
-                alt={product?.images.edges[0].node.altText}
-              />
+          <Flex direction={{ base: "column", lg: "row" }} h="100vh" align="center" justify="center"  > 
+            {/* Product Images */}
+            <Box  overflowY="auto" height="100vh">
+              <DigitalToPhysical product={product} activeView={activeView} setActiveView={setActiveView} />
             </Box>
-            <Box w="40%">
-              <Heading as="h1" fontSize="40px">
-                {product.title}
-              </Heading>
-              <Text fontSize="lg" color="#646D7A">
-                {product.description}
-              </Text>
-
+            {/* Product Information */}
+            <Box flex="1" top="50%" position="sticky" alignItems="center" >
+            <Box 
+                  width={{ lg: "100%" }}  // Set a fixed width for the content to be centered
+                  marginTop="-40%"  // Center horizontally
+                  p={{ lg: 12 }}
+                  
+                  > 
+                  
+              <Flex direction="column" gap={4}>
+                <Heading as="h1" fontSize="40px" mb={3}>
+                  {product.title}
+                </Heading>
+                <Text fontSize="lg" color="#F0F0F" mb={1}>
+                {product.variants.edges[0].node.priceV2.amount}
+                {product.variants.edges[0].node.priceV2.currencyCode} 
+                </Text>
+                <Text fontSize="lg" color="#646D7A" mb={3}>
+                  {product.description}
+                </Text>
+                
+    
+              </Flex>
+              <Box mt={2} mb={6}>
+                <IconButton
+                  icon={<FiPackage size={24} />}
+                  aria-label="Show Product"
+                  variant={activeView === 'product' ? 'solid' : 'outline'}
+                  onClick={() => setActiveView('product')}
+                  m="4px"
+                />
+                <IconButton
+                  icon={<RiVipDiamondFill size={20} />}
+                  aria-label="Show NFT"
+                  variant={activeView === 'nft' ? 'solid' : 'outline'}
+                  onClick={() => setActiveView('nft')}
+                  m="4px"
+                />
+                <p style={{ paddingTop: "20px" }}><i>Both items included</i></p>
+              </Box>
               {isWristband && (
                 <>
-                <Flex direction="row">
-                  <Text fontSize="md" mt={8} rounded="xl">
-                    Make sure you’re signed into your account before you add to cart to ensure that you receive your {" "}
-                    <Tooltip rounded="24px" p={6} color="#ECECECB2" bg="#17181C" placement="top" label="What is a digital reward? For every physical wristband purchase you make, you will receive a virtual wristband that is uniquely owned by you. This virtual wristband unlocks access to exclusive merchandise across the store.">
-                      <span style={{
-                        fontWeight: "bold",
-                        cursor: "default"
-                      }}>
-                        digital reward.
-                      </span>
-                    </Tooltip>
-                  </Text>
+                  <Flex direction="row">
+                    <Text fontSize="md" mt={8} rounded="xl">
+                      Make sure you’re signed into your account before you add to cart to ensure that you receive your {" "}
+                      <Tooltip rounded="24px" p={6} color="#ECECECB2" bg="#17181C" placement="top" label="What is a digital reward? For every physical wristband purchase you make, you will receive a virtual wristband that is uniquely owned by you. This virtual wristband unlocks access to exclusive merchandise across the store.">
+                        <span style={{
+                          fontWeight: "bold",
+                          cursor: "default"
+                        }}>
+                          digital reward.
+                        </span>
+                      </Tooltip>
+                    </Text>
                   </Flex>
                   <Box mt={2}>
                     Purchase your VIP Members Wristband to unlock access to exclusive merchandise across our store.
                   </Box>
                 </>
               )}
-
+  
               {isDripHoodie && (
                 <Text fontSize="md" mt={8}>
                   You are able to purchase this exclusive VIP Members Hoodie because you own a virtual VIP Members wristband
                 </Text>
               )}
-
+  
               <NormalProduct
                 product={product}
                 selectedSize={selectedSize}
@@ -148,12 +185,15 @@ const Product: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 handleAddToCart={handleAddToCart}
               />
             </Box>
+          </Box> 
           </Flex>
         </Box>
       </Container>
       <UpsellModal isOpen={isOpen} onSubmit={handleAddToCart} onClose={onClose} />
     </GateComponent>
   );
+  
+  
 };
 
 export default Product;
