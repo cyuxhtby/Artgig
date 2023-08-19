@@ -8,14 +8,14 @@ export const LoyaltyTokens: React.FC = () => {
   const renderContent = () => {
     if (isLoggedIn) {
       return {
-        title: "You are earning digital rewards!",
+        title: "You are earning digital art!",
         description:
-          "We reward loyal customers with digital rewards. Collect more digital rewards to move up your membership level. Depending on your membership level, you can unlock access to more exclusive merchandise in our store.",
+          "We reward loyal customers with digital art. Collect more digital art to move up your membership level. Depending on your membership level, you can unlock access to more exclusive merchandise in our store.",
       };
     }
     return {
-      title: "Earn rewards with every purchase!",
-      description: "Sign in with your email address to receive digital rewards that count towards your membership level with every purchase.",
+      title: "Earn art with every purchase!",
+      description: "Sign in with your email address to receive digital art that count towards your membership level with every purchase.",
     };
   };
 

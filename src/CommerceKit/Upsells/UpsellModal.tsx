@@ -23,16 +23,16 @@ export const UpsellModal: FC<UpsellModalProps> = ({ isOpen, onSubmit, onClose })
             <Box my={4}>
               <Image src="/sparkle.svg" alt="sparkle" width="71" height="71" />
             </Box>
-            <Text textAlign="center" fontSize="2xl" fontWeight="bold">You&apos;re eligible for additional rewards</Text>
+            <Text textAlign="center" fontSize="2xl" fontWeight="bold">You&apos;re all set to claim your digital collectable</Text>
             {!isLoggedIn ? (
               <>
                 <Text fontSize="2xl" textAlign="center" color="#ECECECB2">
-                  You can earn additional rewards by signing in with your email address. Are you sure you want to continue without signing in?
+                  You can receive digital art by signing in with your email address. Are you sure you want to continue without signing in?
                 </Text>
               </>
             ) : (
               <Text>
-                You are now going to receive rewards for purchasing this product!
+                You are now going to receive digital art for purchasing this product!
               </Text>
             )}
           </Flex>

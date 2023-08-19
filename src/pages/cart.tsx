@@ -74,7 +74,7 @@ export default function CartPage() {
               })}
               {isEligible && (
                 <Box mt={4}>
-                  <Text>Digital rewards may take up to <strong>5 minutes</strong> to be delivered after your purchase.</Text>
+                  <Text>Digital art may take up to <strong>5 minutes</strong> to be delivered after your purchase.</Text>
                 </Box>
               )}
               <Button
