@@ -23,7 +23,7 @@ export const UpsellModal: FC<UpsellModalProps> = ({ isOpen, onSubmit, onClose })
             <Box my={4}>
               <Image src="/sparkle.svg" alt="sparkle" width="71" height="71" />
             </Box>
-            <Text textAlign="center" fontSize="2xl" fontWeight="bold">You&apos;re all set to claim your digital collectable</Text>
+            <Text textAlign="center" fontSize="2xl" fontWeight="bold">You&apos;re eligible to claim a digital collectable</Text>
             {!isLoggedIn ? (
               <>
                 <Text fontSize="2xl" textAlign="center" color="#ECECECB2">
