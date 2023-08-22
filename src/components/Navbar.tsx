@@ -46,7 +46,6 @@ export const Navbar: React.FC = () => {
             alignItems="center"
             gap={6}
           >
-            <Signin />
             {!isLoading && (
               <Box position="relative">
                 <IconButton
@@ -74,6 +73,7 @@ export const Navbar: React.FC = () => {
                 </Badge>
               </Box>
             )}
+          <Signin />
           </Flex>
         </Flex>
       </Container>

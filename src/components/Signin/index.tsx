@@ -1,8 +1,9 @@
 import { PAPER_CLIENT_ID } from '@/lib/environment-variables';
-import { Button, Menu, MenuButton, MenuItem, MenuList, Portal } from '@chakra-ui/react';
+import { Button, IconButton, Menu, MenuButton, MenuItem, MenuList, Portal } from '@chakra-ui/react';
 import { useAddress, useConnectionStatus, useDisconnect, useLogin, useLogout, usePaperWallet, usePaperWalletUserEmail, useUser } from '@thirdweb-dev/react';
 import { useCallback, useEffect, useRef } from 'react';
 import { FiArrowDown, FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { RiAccountCircleLine } from "react-icons/ri";
 
 export const Signin = ({ ...rest }) => {
   const loginAttempted = useRef(false);
@@ -87,10 +88,11 @@ export const Signin = ({ ...rest }) => {
               }}
               {...rest}
             >
-              {email}
+              <RiAccountCircleLine fontSize="24px"/>
             </MenuButton>
             <Portal>
               <MenuList>
+                <MenuItem isDisabled>{email}</MenuItem>
                 <MenuItem onClick={handleLoginOrLogout}>Sign Out</MenuItem>
               </MenuList>
             </Portal>
