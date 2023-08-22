@@ -66,7 +66,7 @@ export const Signin = ({ ...rest }) => {
         {(address || isLoggedIn && email) ? email : 'Sign in'}
       </Button>
     ) : (
-      <Menu matchWidth>
+      <Menu offset={[0, 10]}>
         {({ isOpen }) => (
           <>
             <MenuButton 
@@ -88,7 +88,7 @@ export const Signin = ({ ...rest }) => {
               }}
               {...rest}
             >
-              <RiAccountCircleLine fontSize="24px"/>
+              <RiAccountCircleLine fontSize="22px"/>
             </MenuButton>
             <Portal>
               <MenuList>

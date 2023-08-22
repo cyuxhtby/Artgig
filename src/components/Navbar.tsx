@@ -44,7 +44,7 @@ export const Navbar: React.FC = () => {
             textAlign="center"
             justifyContent="center"
             alignItems="center"
-            gap={6}
+            gap={4}
           >
             {!isLoading && (
               <Box position="relative">
@@ -57,7 +57,7 @@ export const Navbar: React.FC = () => {
                   size="s"
                   variant="ghost"
                   color="black"
-                  padding="5px"
+                  padding="2px"
                 />
                 <Badge
                   zIndex={4}
