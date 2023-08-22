@@ -41,12 +41,26 @@ type ResponseBody = {
 
 export const processWebhook = async (shopifyOrderId: string) => {
   try {
+    console.log("Fetching order details for ID:", shopifyOrderId);
     const response = await shopifyFetchAdminAPI({
       query: GET_ORDER_BY_ID_QUERY,
       variables: {
         id: `gid://shopify/Order/${shopifyOrderId}`,
       },
     });
+
+    if (response) {
+      console.log("Order details fetched successfully");
+    } else {
+      console.log("Error fetching order details");
+      return;
+    }
+
+    // Basic GraphQL Error Check
+    if (response.error) {
+      console.error("GraphQL Errors:", response.error);
+      return;
+  }
 
     const respBody = response.body as ResponseBody;
 
@@ -60,12 +74,12 @@ export const processWebhook = async (shopifyOrderId: string) => {
 
     let wallet = "";
     try {
-      wallet =
-        itemsPurchased[0].customAttributes.find(
+      wallet = itemsPurchased[0].customAttributes.find(
           (e: any) => e.key === "wallet",
         )?.value || "";
+      console.log("Extracted wallet address:", wallet);
     } catch (e) {
-      console.log("error getting wallet address", e);
+      console.log("Error extracting wallet address", e);
     }
 
     const sdkOptions: SDKOptions | undefined = RELAYER_URL
@@ -96,6 +110,8 @@ export const processWebhook = async (shopifyOrderId: string) => {
         image: product.featuredImage.url,
       };
 
+      console.log("Minting NFT for wallet:", wallet);
+
       // Mint NFT without awaiting here
       return nftCollection.erc721.mintTo(wallet, {
         ...metadata,
@@ -109,8 +125,8 @@ export const processWebhook = async (shopifyOrderId: string) => {
     // Await all promises to resolve
     await Promise.all(mintPromises);
 
-    console.timeLog("mintReceipt")
+    console.log("Successfully minted NFT for wallet:", wallet);
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error during webhook processing:", error);
   }
 };
