@@ -8,6 +8,7 @@ import {
   APP_NETWORK,
   NFT_RECEIPTS_ADDRESS,
   RELAYER_URL,
+  THIRDWEB_SECRET_KEY
 } from "@/lib/environment-variables";
 import https from "https";
 
@@ -136,6 +137,7 @@ export default async function handler(
 
       const sdkOptions: SDKOptions | undefined = RELAYER_URL
         ? {
+            secretKey: THIRDWEB_SECRET_KEY,
             gasless: {
               openzeppelin: { relayerUrl: RELAYER_URL },
             },
