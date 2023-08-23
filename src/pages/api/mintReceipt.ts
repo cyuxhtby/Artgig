@@ -165,6 +165,7 @@ export default async function handler(
         };
 
         // Mint NFT without awaiting here
+        // Testing. We will modify the minting proccess soon
         const preparedTx = nftCollection.erc721.mintTo.prepare(wallet, {
           ...metadata,
           attributes: {
