@@ -17,7 +17,7 @@ const Sidebar = () => {
   const btnRef = React.useRef(null);
 
   const links = [
-    { title: 'Collectables', url: '/collectables' },
+    { title: 'Your Collection', url: '/collectables' },
     { title: 'Creater Studio', url: '/studio' },
     // add more links as needed
   ];

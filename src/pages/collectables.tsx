@@ -1,10 +1,8 @@
 import React from 'react';
 import {
-  useClaimNFT,
-  useContract,
-  Web3Button,
   useAddress,
-  useNFT,
+  useContract,
+  useOwnedNFTs,
   ThirdwebNftMedia,
 } from "@thirdweb-dev/react";
 import {
@@ -13,43 +11,60 @@ import {
     Container,
     Flex,
     Text,
+    Spinner,
+    Center,
 } from "@chakra-ui/react";
 
-const contractAddress: string = "0x95dD8aFfBeBB813F554e0F75fd99E0a110673813";
+const contractAddress = "0xeAB3244339655A43b4DbDB831eb9FeDf6089dCdB";
+
 
 const Mint: React.FC = () => {
   const address = useAddress();
   const { contract } = useContract(contractAddress);
-  const { mutateAsync: claimNft } = useClaimNFT(contract);
-  const { data: nft, isLoading, error } = useNFT(contract, '0');
+  const { data, isLoading, error } = useOwnedNFTs(contract, address);
   
+
+  // Log errors for debugging
+  if (error) {
+    console.error("Error fetching NFTs:", error);
+  }
+
+  // Check if wallet is connected
+  if (!address) {
+    return <Text mt={12} align="center" fontSize="xx-large">Sign in to view your collectables</Text>;
+  }
+
   // Render loading state
   if (isLoading) {
-    console.log(error);
-    return <Box justifyContent="center">Loading...</Box>;
+    return (
+      <Center h="100vh">
+        <Spinner size="xl" />
+      </Center>
+    );
   } 
-  
+
   // Render error state
-  if (error || !nft) return <Box>NFT not found</Box>;
+  if (error || !data) {
+    return <Box>Error fetching collectables</Box>;
+  }
+
+  if (data && data.length === 0) {
+    return <Text mt={12} align="center" fontSize="xx-large">You don't have any collectables yet. Purchase a product to get started!</Text>;
+  }
 
   return (
     <Container>
-    <Flex direction="column" align="center" justify="center">
-      <ThirdwebNftMedia metadata={nft.metadata} width="6rem" />
-      <Text my={4}>Lovley NFT</Text> {/* Replace "NFT Title" with the actual title of your NFT */}
-      <Web3Button
-        contractAddress={contractAddress}
-        action={() =>
-          claimNft({
-            to: address, // Use useAddress hook to get current wallet address
-            quantity: 1, // Amount of NFTs to claim
-          })
-        }
-      >
-        Mint Now
-      </Web3Button>
-    </Flex>
-  </Container>
+      <Flex direction="column" align="center" justify="center">
+        <Text mt={8} fontSize="xx-large">Your Collectables</Text>
+        {data.map((nft, index) => (
+          <Box key={index} mb={1}>
+            <ThirdwebNftMedia metadata={nft.metadata} width="6rem" />
+            <Text mt={1} fontSize="lg" fontWeight="bold">{nft.metadata.name}</Text>
+            <Text mt={1} fontSize="md">{nft.metadata.description}</Text>
+          </Box>
+        ))}
+      </Flex>
+    </Container>
   );
 }
 
