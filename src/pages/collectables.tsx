@@ -49,7 +49,7 @@ const Collectables: React.FC = () => {
   }
 
   if (data && data.length === 0) {
-    return <Text mt={12} align="center" fontSize="xx-large">"You don&apos;t have any collectables yet. Purchase a product to get started!"</Text>;
+    return <Text mt={12} align="center" fontSize="xx-large">You don&apos;t have any collectables yet. Purchase a product to get started!</Text>;
   }
 
   return (
