@@ -18,7 +18,7 @@ import {
 const contractAddress = "0xeAB3244339655A43b4DbDB831eb9FeDf6089dCdB";
 
 
-const Mint: React.FC = () => {
+const Collectables: React.FC = () => {
   const address = useAddress();
   const { contract } = useContract(contractAddress);
   const { data, isLoading, error } = useOwnedNFTs(contract, address);
@@ -49,7 +49,7 @@ const Mint: React.FC = () => {
   }
 
   if (data && data.length === 0) {
-    return <Text mt={12} align="center" fontSize="xx-large">You don't have any collectables yet. Purchase a product to get started!</Text>;
+    return <Text mt={12} align="center" fontSize="xx-large">"You don&apos;t have any collectables yet. Purchase a product to get started!"</Text>;
   }
 
   return (
@@ -68,4 +68,4 @@ const Mint: React.FC = () => {
   );
 }
 
-export default Mint;
+export default Collectables;
