@@ -40,11 +40,11 @@ export const UpsellModal: FC<UpsellModalProps> = ({ isOpen, onSubmit, onClose })
 
         <ModalFooter>
           <Flex w="full" justifyContent="center" alignItems="center" gap={4}>
-            {!address && <Signin w="182px" />}
-            <Button w="182px" variant='outline' onClick={() => {
+          <Button w="182px" variant='outline' onClick={() => {
               onSubmit();
               onClose();
             }}>Add to cart</Button>
+            {!address && <Signin w="182px" />}
           </Flex>
         </ModalFooter>
       </ModalContent>
