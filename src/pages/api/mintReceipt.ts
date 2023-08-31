@@ -1,16 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { prepareGaslessRequest, SDKOptions, SmartContract, ThirdwebSDK } from "@thirdweb-dev/sdk/evm";
+import { prepareGaslessRequest, SDKOptions, SmartContract, ThirdwebSDK, isExtensionEnabled} from "@thirdweb-dev/sdk/evm";
 import crypto from "crypto";
 import { shopifyFetchAdminAPI } from "@/lib/utils";
 import { GET_ORDER_BY_ID_QUERY } from "@/queries";
 import { Readable } from "stream";
 import {
   APP_NETWORK,
-  NFT_RECEIPTS_ADDRESS,
   RELAYER_URL,
   THIRDWEB_SECRET_KEY
 } from "@/lib/environment-variables";
 import https from "https";
+import { Metafield } from "@/types";
 
 export const config = {
   api: {
@@ -31,6 +31,10 @@ interface Data {}
 type PurchasedItems = {
     id: string;
     quantity: number;
+    assetContract?: {
+      value: string;
+      type: string;
+    };
     variant: {
         id: string;
         price: {
@@ -44,6 +48,7 @@ type PurchasedItems = {
                 id: string;
                 url: string;
             };
+            assetContract?: Metafield;
         };
     };
     customAttributes: {
@@ -62,6 +67,10 @@ type ResponseBody = {
           node: {
             id: string;
             quantity: number;
+            assetContract?: { 
+              value: string;
+              type: string;
+            };
             variant: {
               id: string;
               price: {
@@ -75,6 +84,7 @@ type ResponseBody = {
                   id: string;
                   url: string;
                 };
+                assetContract?: Metafield;
               }
             };
             customAttributes: {
@@ -125,6 +135,11 @@ export default async function handler(
         (edge) => edge.node,
       );
 
+      
+      // Warning: use of `any`
+      const productContract: string | any = itemsPurchased[0].variant.product.assetContract?.value;
+
+
       let wallet = "";
       try {
         wallet =
@@ -149,33 +164,21 @@ export default async function handler(
         APP_NETWORK,
         sdkOptions,
       );
-
-      const nftCollection = await sdk.getContract(NFT_RECEIPTS_ADDRESS);
+        
+      const nftCollection = await sdk.getContract(productContract);
+    
 
       console.timeLog("beforeMint")
       console.time("prepare")
       // For each item purchased, mint the wallet address an NFT
-      const mintPromises = itemsPurchased.map(async (item) => {
+      const claimPromises = itemsPurchased.map(async (item) => {
         // Grab the information of the product ordered
         const product = item.variant.product;
 
-        // Set the metadata for the NFT to the product information
-        const metadata = {
-          name: product.title,
-          description: product.description,
-          image: product.featuredImage.url,
-        };
-
-        // Mint NFT without awaiting here
-        // Testing. We will modify the minting proccess soon
-        const preparedTx = nftCollection.erc721.mintTo.prepare(wallet, {
-          ...metadata,
-          attributes: {
-            trait_type: "Amount",
-            value: item.quantity,
-          },
-        });
-
+        // claim lazy minted NFT
+        // Warning: use of `any` 
+        const preparedTx : any = await nftCollection.erc721.claimTo.prepare(wallet, item.quantity);
+       
 
         return preparedTx;
       });
@@ -184,7 +187,7 @@ export default async function handler(
 
       console.time("minting")
       // Await all promises to resolve
-      await Promise.all(mintPromises)
+      await Promise.all(claimPromises)
         .then((txs) => Promise.all(txs.map(async (tx) => {
           const request = await prepareGaslessRequest(tx);
           const url = new URL(request.url);

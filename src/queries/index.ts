@@ -354,6 +354,10 @@ export const GET_ORDER_BY_ID_QUERY = `#graphql
                 id
                 title
                 description
+                assetContract { 
+                  value
+                  type
+                }
                 featuredImage {
                   id
                   url
