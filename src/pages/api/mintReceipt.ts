@@ -124,6 +124,12 @@ export default async function handler(
         },
       });
 
+      if (!response || !response.body || !response.body.data || !response.body.data.order) {
+        console.error("Invalid or incomplete response from Shopify:", response);
+        res.status(500).send("Invalid response from Shopify");
+        return;
+      }
+
       const respBody = response.body as ResponseBody;
 
       if (!respBody.data.order.lineItems) {
@@ -168,7 +174,7 @@ export default async function handler(
       const nftCollection = await sdk.getContract(productContract);
     
 
-      console.timeLog("beforeMint")
+    
       console.time("prepare")
       // For each item purchased, mint the wallet address an NFT
       const claimPromises = itemsPurchased.map(async (item) => {
@@ -214,6 +220,7 @@ export default async function handler(
         console.error("Error in minting process:", err);
       });
       console.timeLog("minting")
+      console.timeEnd("beforeMint")
 
       res.status(200).send("OK");
     } else {
