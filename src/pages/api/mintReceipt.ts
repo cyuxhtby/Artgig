@@ -126,6 +126,10 @@ export default async function handler(
 
       if (!response || !response.body || !response.body.data || !response.body.data.order) {
         console.error("Invalid or incomplete response from Shopify:", response);
+        // Log the errors object for more details
+        if (response.body && response.body.errors) {
+          console.error("Shopify Errors:", JSON.stringify(response.body.errors, null, 2));
+        }
         res.status(500).send("Invalid response from Shopify");
         return;
       }
