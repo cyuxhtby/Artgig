@@ -350,7 +350,7 @@ export const GET_ORDER_BY_ID_QUERY = `#graphql
             quantity
             variant {
               id
-              product {
+              product{
                 id
                 title
                 description
@@ -361,6 +361,7 @@ export const GET_ORDER_BY_ID_QUERY = `#graphql
                 assetContract: metafield(namespace: "collectable", key: "asset_contract") {
                   value
                   type
+                }
               }
             }
             customAttributes {
