@@ -103,7 +103,6 @@ export default async function handler(
   res: NextApiResponse<Data>,
 ) {
   try {
-    console.time("beforeMint")
     const secretKey = process.env.SHOPIFY_WEBHOOK_KEY as string;
 
     const hmac = req.headers["x-shopify-hmac-sha256"];
@@ -224,7 +223,6 @@ export default async function handler(
         console.error("Error in minting process:", err);
       });
       console.timeLog("minting")
-      console.timeEnd("beforeMint")
 
       res.status(200).send("OK");
     } else {

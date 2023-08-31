@@ -358,6 +358,9 @@ export const GET_ORDER_BY_ID_QUERY = `#graphql
                   id
                   url
                 }
+                assetContract: metafield(namespace: "collectable", key: "asset_contract") {
+                  value
+                  type
               }
             }
             customAttributes {
