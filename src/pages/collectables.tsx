@@ -57,7 +57,7 @@ const Collectables: React.FC = () => {
 
   // If user has no collectables
   if (allData.length === 0) {
-    return <Text mt={12} align="center" fontSize="xx-large">You don't have any collectables yet. Purchase a product to get started!</Text>;
+    return <Text mt={12} align="center" fontSize="xx-large">You don&apos;t have any collectables yet. Purchase a product to get started!</Text>;
   }
 
   return (
