@@ -89,7 +89,7 @@ void main() {
 
     return (
         <div className="hero" ref={mountRef} style={{ position: 'relative', overflow: 'hidden' , maxHeight: "80vh"}}>
-            <h1 className="hero__headline" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', zIndex: 1 , fontSize: "36px", fontWeight: "bold"}}>
+            <h1 className="hero__headline" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', zIndex: 0 , fontSize: "36px", fontWeight: "bold"}}>
                 {headline}
             </h1>
         </div>

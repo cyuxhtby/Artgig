@@ -1,5 +1,5 @@
 import { SDKOptions, ThirdwebSDK } from "@thirdweb-dev/sdk";
-import { APP_NETWORK, NFT_RECEIPTS_ADDRESS, RELAYER_URL } from "./lib/environment-variables";
+import { APP_NETWORK, NFT_RECEIPTS_ADDRESS, RELAYER_URL, THIRDWEB_SECRET_KEY} from "./lib/environment-variables";
 import { shopifyFetchAdminAPI } from "./lib/utils";
 import { GET_ORDER_BY_ID_QUERY } from "./queries";
 

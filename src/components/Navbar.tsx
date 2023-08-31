@@ -33,11 +33,12 @@ export const Navbar: React.FC = () => {
           gap={4}
           justifyContent="space-between"
           alignItems="center"
-          py={7}
+          py={4}
+          px={"10%"}
         >
           <Link href="/">
             <Flex gap={4} justifyContent="center" alignItems="center" >
-              <Image src="/artgig.svg" alt="logo" h={14} />
+              <Image src="/artgig.svg" alt="logo" h={12} />
             </Flex>
           </Link>
           <Flex

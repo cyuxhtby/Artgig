@@ -35,12 +35,13 @@ const Sidebar = () => {
       >
         <IconButton
           aria-label="Open Sidebar"
-          icon={isOpen ? <></> : <AiFillCaretRight />}
+          icon={isOpen ? <></> : <AiFillCaretRight/>}
           color="black"
-          bg="white"
+          bg="white"  // Transparent background
+          opacity={0.8}
           minWidth="20px"
-          height="40px"
-          borderRightRadius="5px"
+          height="80px"
+          borderRightRadius="10px"
           borderLeftRadius="0px"
           transition="left 0.5s"
           ref={btnRef}

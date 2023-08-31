@@ -1,31 +1,40 @@
-import { Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
-import { ProductCard } from "./ProductCard";
-import { Product } from "@/types";
+  import { Flex, Heading, SimpleGrid, Text, Box } from "@chakra-ui/react";
+  import { ProductCard } from "./ProductCard";
+  import { Product } from "@/types";
 
-interface ProductsProps {
-  products: Product[] | [];
-}
-
-export const Products: React.FC<ProductsProps> = ({ products }) => {
-  if (!products.length) {
-    return (
-      <Flex w="full" direction="column" justifyContent="center" alignItems="center" gap={4}>
-        <Heading>No products yet!</Heading>
-        <Text>
-          You don&apos;t have any products yet! Go and create some from the
-          Shopify Admin Dashboard
-        </Text>
-      </Flex>
-    );
+  interface ProductsProps {
+    products: Product[] | [];
   }
 
-  return (
-    <SimpleGrid minChildWidth="300px" spacing={10} mb={24}>
-      {products?.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </SimpleGrid>
-  );
-};
+  export const Products: React.FC<ProductsProps> = ({ products }) => {
 
-export default Products;
+    if (!products.length) {
+      return (
+        <Flex w="full" direction="column" justifyContent="center" alignItems="center" gap={4}>
+          <Heading>No products yet!</Heading>
+          <Text>
+            You don&apos;t have any products yet! Go and create some from the
+            Shopify Admin Dashboard
+          </Text>
+        </Flex>
+      );
+    }
+
+    return (
+      <Box mb={24}>
+        <SimpleGrid
+          minChildWidth="300px"
+          spacing={10}
+          pl={{ base: "20px", sm: "0px" }}
+          mb={24}
+        >
+          {products?.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </SimpleGrid>
+
+      </Box>
+    );
+  };
+
+  export default Products;
