@@ -1,32 +1,64 @@
+import { useState, useEffect, useRef } from 'react';
 import { useCart } from "@/hooks/useCart";
 import {
   Badge,
   Box,
   Container,
   Flex,
-  IconButton,
   Image,
-  Text,
+  Slide,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { CgShoppingBag } from "react-icons/cg";
-
 
 import { Signin } from "./Signin";
 
-
 export const Navbar: React.FC = () => {
   const { data: cart, isLoading } = useCart();
+  const lastScrollTop = useRef(0);
+  const [isScrolledUp, setIsScrolledUp] = useState(true);
+
+  const handleScroll = () => {
+    const currentScrollTop = window.scrollY;
+
+    if (currentScrollTop > lastScrollTop.current + 10) {
+      setIsScrolledUp(false); 
+    } else if (currentScrollTop < lastScrollTop.current - 10) {
+      setIsScrolledUp(true); 
+    }
+
+    lastScrollTop.current = currentScrollTop <= 0 ? 0 : currentScrollTop;
+  }
+
+  function debounce<T extends (...args: any[]) => any>(func: T, wait: number): (...funcArgs: Parameters<T>) => void {
+    let timeout: NodeJS.Timeout | null = null;
+    return function(...args: Parameters<T>) {
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => func(...args), wait);
+    };
+}
+
+
+  useEffect(() => {
+    const debouncedHandleScroll = debounce(handleScroll, 10);
+    window.addEventListener('scroll', debouncedHandleScroll);
+    return () => {
+      window.removeEventListener('scroll', debouncedHandleScroll);
+    }
+  }, []); 
+
+  const navbarHeight = "100px";
 
   return (
-    <>
+    <div style={{ height: navbarHeight, zIndex: 1 }}>
+    <Slide direction="top" in={isScrolledUp} style={{ zIndex: 1 }}>
       <Container
         maxW="100%"
         maxH="50%"
         position="sticky"
         top={0}
         bg="#FFFFFF"
-        zIndex={1}
       >
         <Flex
           w="full"
@@ -34,12 +66,12 @@ export const Navbar: React.FC = () => {
           gap={4}
           justifyContent="space-between"
           alignItems="center"
-          py={4}
+          py={4} 
           px={"10%"}
         >
           <Link href="/">
-            <Flex gap={4} justifyContent="center" alignItems="center" >
-              <Image src="/artgig.svg" alt="logo" h={14} />
+            <Flex gap={4} justifyContent="center" alignItems="center">
+              <Image src="/artgig.svg" alt="logo" h={90} />
             </Flex>
           </Link>
           <Flex
@@ -52,7 +84,6 @@ export const Navbar: React.FC = () => {
             {!isLoading && (
               <Box position="relative">
                 <Link href="/cart">
-
                   <Badge
                     zIndex={4}
                     position="relative"
@@ -71,13 +102,13 @@ export const Navbar: React.FC = () => {
                       return acc + curr.node.quantity;
                     }, 0) || 0}
                   </Badge>
-
                 </Link>
               </Box>
             )}
           </Flex>
         </Flex>
       </Container>
-    </>
+    </Slide>
+    </div>
   );
 };

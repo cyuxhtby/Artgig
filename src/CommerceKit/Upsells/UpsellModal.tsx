@@ -21,7 +21,7 @@ export const UpsellModal: FC<UpsellModalProps> = ({ isOpen, onSubmit, onClose })
         <ModalBody>
           <Flex direction="column" justifyContent="center" alignItems="center" gap={4}>
             <Box my={4}>
-              <Image src="/sparkle.svg" alt="sparkle" width="71" height="71" />
+              <Image src="/favicon.ico" alt="sparkle" width="71" height="71" />
             </Box>
             <Text textAlign="center" fontSize="2xl" fontWeight="bold">You&apos;re eligible to claim a digital collectable</Text>
             {!isLoggedIn ? (
