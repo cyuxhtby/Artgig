@@ -58,7 +58,7 @@ export const Signin = ({ ...rest }) => {
         color="black"
         _hover={{
           bg: "white",
-          color: "black",
+          color: "grey",
           opacity: 0.9,
         }}
         {...rest}

@@ -9,7 +9,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { FiShoppingBag } from "react-icons/fi";
+import { CgShoppingBag } from "react-icons/cg";
+
 
 import { Signin } from "./Signin";
 
@@ -38,7 +39,7 @@ export const Navbar: React.FC = () => {
         >
           <Link href="/">
             <Flex gap={4} justifyContent="center" alignItems="center" >
-              <Image src="/artgig.svg" alt="logo" h={12} />
+              <Image src="/artgig.svg" alt="logo" h={14} />
             </Flex>
           </Link>
           <Flex
@@ -47,34 +48,33 @@ export const Navbar: React.FC = () => {
             alignItems="center"
             gap={4}
           >
+            <Signin />
             {!isLoading && (
               <Box position="relative">
-                <IconButton
-                  as={Link}
-                  href="/cart"
-                  icon={<FiShoppingBag/>}
-                  aria-label="cart-btn"
-                  zIndex={2}
-                  size="s"
-                  variant="ghost"
-                  color="black"
-                  padding="2px"
-                />
-                <Badge
-                  zIndex={4}
-                  position="absolute"
-                  top={0}
-                  right={0}
-                  transform="translate(50%, -50%)"
-                  color="black"
-                >
-                  {cart?.lines?.edges?.reduce((acc, curr) => {
-                    return acc + curr.node.quantity;
-                  }, 0) || 0}
-                </Badge>
+                <Link href="/cart">
+
+                  <Badge
+                    zIndex={4}
+                    position="relative"
+                    color="black"
+                    bg="white"
+                    p={1}
+                    fontSize="s"
+                    borderRadius="full"
+                    _hover={{
+                      bg: "white",
+                      color: "grey",
+                      opacity: 0.9,
+                    }}
+                  >
+                    {cart?.lines?.edges?.reduce((acc, curr) => {
+                      return acc + curr.node.quantity;
+                    }, 0) || 0}
+                  </Badge>
+
+                </Link>
               </Box>
             )}
-          <Signin />
           </Flex>
         </Flex>
       </Container>
