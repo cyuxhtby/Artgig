@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import {
   useAddress,
   useContract,
@@ -12,6 +13,8 @@ import {
   Text,
   Spinner,
   Center,
+  Button,
+  Grid,
 } from "@chakra-ui/react";
 
 const useFetchNFTs = (contractAddress: string) => {
@@ -37,7 +40,7 @@ const Collectables: React.FC = () => {
 
   // Check if wallet is connected
   if (!address) {
-    return <Text mt={12} align="center" fontSize="xx-large">Sign in to view your collectables</Text>;
+    return <Text mt={20} align="center" fontSize="xx-large" fontWeight="bold">Sign in to view your collectables</Text>;
   }
 
   // Log errors for debugging
@@ -53,7 +56,7 @@ const Collectables: React.FC = () => {
         <Spinner size="xl" />
       </Center>
     );
-  } 
+  }
 
   // If user has no collectables
   if (allData.length === 0) {
@@ -61,16 +64,39 @@ const Collectables: React.FC = () => {
   }
 
   return (
-    <Container>
+    <Container maxW="container.xl" py={8}>
       <Flex direction="column" align="center" justify="center">
-        <Text mt={8} fontSize="xx-large">Your Collectables</Text>
-        {allData.map((nft, index) => (
-          <Box key={index} mb={1}>
-            <ThirdwebNftMedia metadata={nft.metadata} width="6rem" />
-            <Text mt={1} fontSize="lg" fontWeight="bold">{nft.metadata.name}</Text>
-            <Text mt={1} fontSize="md">{nft.metadata.description}</Text>
-          </Box>
-        ))}
+        <Text mb={16} mt={12} fontSize="2xl" fontWeight="bold">Your Digital Pieces</Text>
+
+        <Grid templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap={6} width="100%">
+          {allData.map((nft, index) => (
+            <Box key={index} p={4} borderWidth="1px" borderRadius="md">
+              <Box width="100%" maxWidth="200px" mx="auto">
+                <ThirdwebNftMedia metadata={nft.metadata} width="100%" />
+              </Box>
+              <Text mt={2} fontSize="lg" fontWeight="bold" textAlign="center">{nft.metadata.name}</Text>
+              <Text mt={1} fontSize="md" textAlign="center">{nft.metadata.description}</Text>
+            </Box>
+          ))}
+        </Grid>
+
+        <Link href="/export" passHref>
+          <Button
+            as="a"
+            mt={16}
+            mb={16}
+            variant="outline"
+            borderColor="white"
+            color="white"
+            size="lg"
+            _hover={{
+              backgroundColor: "rgba(255, 255, 255, 0.2)"
+            }}
+          >
+            Export collection
+          </Button>
+        </Link>
+
       </Flex>
     </Container>
   );
