@@ -71,7 +71,7 @@ export const Navbar: React.FC = () => {
         >
           <Link href="/">
             <Flex gap={4} justifyContent="center" alignItems="center">
-              <Image src="/artgig.svg" alt="logo" h={90} />
+              <Image src="/artgig.svg" alt="logo" h={16} />
             </Flex>
           </Link>
           <Flex
