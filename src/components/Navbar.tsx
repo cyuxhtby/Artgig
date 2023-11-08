@@ -67,7 +67,8 @@ export const Navbar: React.FC = () => {
           justifyContent="space-between"
           alignItems="center"
           py={4} 
-          px={"10%"}
+          px={{ base: "10%", md: "10%" }}
+          ml={{base:'-15px', md:'0px'}}
         >
           <Link href="/">
             <Flex gap={4} justifyContent="center" alignItems="center">
