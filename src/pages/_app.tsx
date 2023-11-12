@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import BottomNav from "@/components/BottomNav";
 import { Navbar } from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import {
@@ -26,6 +28,7 @@ paperWalletConfig.meta.name = "Email";
 paperWalletConfig.meta.iconURL = "https://ipfs.thirdwebcdn.com/ipfs/QmUUoZxPuAgxKHeT5cCY4vwmN8sZRiV9ptzBhuM47Y24NY/email%20wallet%20shopify.png";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [isPwa, setIsPwa] = useState(false);
   const supportedWallets = [
     ...(PAPER_CLIENT_ID
       ? [
@@ -60,12 +63,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <Head>
           <title>Commerce Reimagined</title>
         </Head>
-        <Navbar/>
-        
+        {isPwa ? null : <Navbar/>}
         <Container maxW="container.page">
           <Component {...pageProps} />
         </Container>
-        <Sidebar/>
+        {isPwa ? <BottomNav/> : <Sidebar/>}
       </ThirdwebProvider>
     </ChakraProvider>
   );
