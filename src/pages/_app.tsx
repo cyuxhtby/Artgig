@@ -29,6 +29,12 @@ paperWalletConfig.meta.iconURL = "https://ipfs.thirdwebcdn.com/ipfs/QmUUoZxPuAgx
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isPwa, setIsPwa] = useState(false);
+
+  useEffect(() => {
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    setIsPwa(isStandalone);
+  }, []);
+
   const supportedWallets = [
     ...(PAPER_CLIENT_ID
       ? [
