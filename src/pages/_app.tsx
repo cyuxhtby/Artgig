@@ -11,7 +11,7 @@ import {
   THIRDWEB_SECRET_KEY
 } from "@/lib/environment-variables";
 import theme from "@/theme";
-import { ChakraProvider, Container } from "@chakra-ui/react";
+import { ChakraProvider, Container, Flex } from "@chakra-ui/react";
 import {
   ThirdwebAuthConfig,
   paperWallet,
@@ -57,24 +57,27 @@ export default function App({ Component, pageProps }: AppProps) {
     : undefined;
     
   return (
-    <ChakraProvider theme={theme}>
-      <ThirdwebProvider
-        supportedWallets={supportedWallets}
-        authConfig={authConfig}
-        sdkOptions={sdkOptions}
-        activeChain={APP_NETWORK || "mumbai"}
-        clientId={THIRDWEB_CLIENT_ID}
-        secretKey={THIRDWEB_SECRET_KEY}
-      >
-        <Head>
-          <title>Commerce Reimagined</title>
-        </Head>
-        {isPwa ? null : <Navbar/>}
-        <Container maxW="container.page">
-          <Component {...pageProps} />
-        </Container>
-        {isPwa ? <BottomNav/> : <Sidebar/>}
-      </ThirdwebProvider>
-    </ChakraProvider>
+   
+    <Flex direction="column" minHeight="100vh">
+      <ChakraProvider theme={theme}>
+        <ThirdwebProvider
+          supportedWallets={supportedWallets}
+          authConfig={authConfig}
+          sdkOptions={sdkOptions}
+          activeChain={APP_NETWORK || "mumbai"}
+          clientId={THIRDWEB_CLIENT_ID}
+          secretKey={THIRDWEB_SECRET_KEY}
+        >
+          <Head>
+            <title>Commerce Reimagined</title>
+          </Head>
+          {isPwa ? null : <Navbar/>}
+          <Container maxW="container.page" flexGrow={1}>
+            <Component {...pageProps} />
+          </Container>
+          {isPwa ? <BottomNav/> : <Sidebar/>}
+        </ThirdwebProvider>  
+      </ChakraProvider>
+    </Flex>
   );
 }

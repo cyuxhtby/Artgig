@@ -20,7 +20,7 @@ const BottomNav: React.FC = () => {
         </Link>
 
         {/* Link to Collectables */}
-        <Link href="/collectibles" aria-label="Your Collection" color="black">
+        <Link href="/collectables" aria-label="Your Collection" color="black">
           <p>Collectibles</p>
         </Link>
 

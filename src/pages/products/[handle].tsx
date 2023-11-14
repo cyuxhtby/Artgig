@@ -98,7 +98,7 @@ const Product: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <Container
         maxW={{ base: "100vw", lg: "container.page" }} px={0} py={6}
       >
-        <Box mt={4}>
+        <Box mt={4} mb={16}>
           <Link href="/">
             <Text color="#646D7A" mb={4}>&larr; Back to all products</Text>
           </Link>
