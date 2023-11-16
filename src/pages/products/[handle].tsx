@@ -104,14 +104,14 @@ const Product: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           </Link>
           <Flex direction={{ base: "column", lg: "row" }} h="100vh" align="center" justify="center"  >
             {/* Product Images */}
-            <Box overflowY="auto" height="100vh">
+            <Box overflowY="auto" height="100vh" mb={6}>
               <DigitalToPhysical product={product} activeView={activeView} setActiveView={setActiveView} />
             </Box>
             {/* Product Information */}
-            <Box flex="1" top="50%" position="sticky" alignItems="center" >
+            <Box flex="1" top="50%" position="sticky" alignItems="center" mt={6}>
               <Box
                 width={{ base: "auto", lg: "100%" }}  // Set the width to be auto on mobile and 100% on larger screens
-                marginLeft={{ base: "-150", lg: "0" }}  // Set the left margin to auto on mobile to center the box
+                marginLeft={{ base: "0", lg: "0" }}  // Set the left margin to 0 on all screen sizes to prevent cutoff
                 marginTop="-40%"  // Center horizontally
                 textAlign={{ base: "left", lg: "left" }}  // Align text to the left on all screen sizes
                 p={{ lg: 12 }}
@@ -174,7 +174,7 @@ const Product: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
                     You are able to purchase this exclusive VIP Members Hoodie because you own a virtual VIP Members wristband
                   </Text>
                 )}
-                  <Box w={{ base: '180%', lg: '100%' }}>
+                  <Box w={{ base: '100%', lg: '100%' }}>
                     <NormalProduct
                       product={product}
                       selectedSize={selectedSize}

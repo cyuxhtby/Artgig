@@ -90,14 +90,14 @@ void main() {
     }, []);
 
     return (
-        <div className="hero" ref={mountRef} style={{ position: 'relative', overflow: 'hidden' , maxHeight: "80vh"}}>
-            <h1 className="hero__headline" style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', zIndex: 0 , fontSize: "36px", fontWeight: "bold"}}>
+        <div className="hero" ref={mountRef} style={{ position: 'relative', overflow: 'hidden' , maxHeight: "80vh", padding: '10px'}}>
+            <h1 className="hero__headline" style={{ position: 'absolute', top: '20%', left: '0', transform: 'translate(0, -50%)', color: 'white', zIndex: 0 , fontSize: "36px", fontWeight: "bold", padding: '5px'}}>
                 {headline}
             </h1>
-            <h2 className="hero__subheadline" style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', zIndex: 0 , fontSize: "24px", fontWeight: "bold"}}>
+            <h2 className="hero__subheadline" style={{ position: 'absolute', top: '30%', left: '0', transform: 'translate(0, -50%)', color: 'white', zIndex: 0 , fontSize: "24px", fontWeight: "bold", padding: '5px'}}>
                 {subHeadline}
             </h2>
-            <Button onClick={() => router.push('/products')} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 0 , fontSize: "18px", fontWeight: "bold"}}>
+            <Button onClick={() => router.push('/products')} style={{ position: 'absolute', top: '40%', left: '0', transform: 'translate(0, -50%)', zIndex: 0 , fontSize: "18px", fontWeight: "bold", padding: '5px'}}>
                 {ctaText}
             </Button>
         </div>
