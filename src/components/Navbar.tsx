@@ -11,6 +11,7 @@ import {
 import Link from "next/link";
 
 import { Signin } from "./Signin";
+import { ConnectWallet, lightTheme } from '@thirdweb-dev/react';
 
 export const Navbar: React.FC = () => {
   const { data: cart, isLoading } = useCart();
@@ -81,7 +82,8 @@ export const Navbar: React.FC = () => {
             alignItems="center"
             gap={4}
           >
-            <Signin />
+           
+            
             {!isLoading && (
               <Box position="relative">
                 <Link href="/cart">
@@ -106,6 +108,18 @@ export const Navbar: React.FC = () => {
                 </Link>
               </Box>
             )}
+            <ConnectWallet
+        theme={lightTheme({
+          colors: {
+            accentText: "#8f33ff",
+            accentButtonBg: "#8f33ff",
+          },
+        })}
+        btnTitle={"Sign in"}
+        auth={{ loginOptional: false }}
+        switchToActiveChain={true}
+        modalSize={"compact"}
+      />
           </Flex>
         </Flex>
       </Container>

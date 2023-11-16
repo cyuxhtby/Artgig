@@ -1,6 +1,7 @@
 // BottomNav.tsx
 import { Box, Flex, Link, IconButton } from '@chakra-ui/react';
-import { Signin } from "./Signin";  // Assuming Signin component is accessible
+import { Signin } from "./Signin"; 
+import { ConnectWallet,lightTheme } from '@thirdweb-dev/react';
 
 const BottomNav: React.FC = () => {
   return (
@@ -15,8 +16,8 @@ const BottomNav: React.FC = () => {
     >
       <Flex justifyContent="space-around" alignItems="center">
         {/* Link to Home */}
-        <Link href="/" aria-label="Home">
-          <IconButton aria-label="Home" icon={<Box as="img" src="/artgig.svg" alt="Home" />} />
+        <Link href="/" aria-label="Home" color="black">
+        <p>Main</p>
         </Link>
 
         {/* Link to Collectables */}
@@ -30,7 +31,18 @@ const BottomNav: React.FC = () => {
         </Link>
 
         {/* Signin Button */}
-        <Signin />
+        <ConnectWallet
+        theme={lightTheme({
+          colors: {
+            accentText: "#8f33ff",
+            accentButtonBg: "#8f33ff",
+          },
+        })}
+        btnTitle={"Sign in"}
+        auth={{ loginOptional: false }}
+        switchToActiveChain={true}
+        modalSize={"compact"}
+      />
       </Flex>
     </Box>
   );

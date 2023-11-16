@@ -88,7 +88,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <Heading size="md">{title}</Heading>
             </LinkOverlay>
           </Flex>
-          <Text noOfLines={3}>{description}</Text>
+         
         </Flex>
       </CardBody>
     </Card>

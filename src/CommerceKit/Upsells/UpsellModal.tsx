@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
-import { useAddress, useConnectionStatus, useUser } from "@thirdweb-dev/react";
+import { ConnectWallet, useAddress, useConnectionStatus, useUser, darkTheme } from "@thirdweb-dev/react";
 import { FC } from "react";
 import { Signin } from "../../components/Signin";
 import Image from "next/image";
@@ -40,11 +40,22 @@ export const UpsellModal: FC<UpsellModalProps> = ({ isOpen, onSubmit, onClose })
 
         <ModalFooter>
           <Flex w="full" justifyContent="center" alignItems="center" gap={4}>
-          <Button w="182px" variant='outline' onClick={() => {
+          <Button w="145px" h="50px" variant='outline' onClick={() => {
               onSubmit();
               onClose();
             }}>Add to cart</Button>
-            {!address && <Signin w="182px" />}
+            {!address && <ConnectWallet
+        theme={darkTheme({
+          colors: {
+            accentText: "#8f33ff",
+            accentButtonBg: "#8f33ff",
+          },
+        })}
+        btnTitle={"Sign in"}
+        auth={{ loginOptional: false }}
+        switchToActiveChain={true}
+        modalSize={"compact"}
+      />}
           </Flex>
         </ModalFooter>
       </ModalContent>

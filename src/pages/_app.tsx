@@ -14,18 +14,24 @@ import theme from "@/theme";
 import { ChakraProvider, Container, Flex } from "@chakra-ui/react";
 import {
   ThirdwebAuthConfig,
-  paperWallet,
+  // paperWallet,
   SDKOptions,
   ThirdwebProvider,
+  metamaskWallet,
+  coinbaseWallet,
+  walletConnect,
+  ConnectWallet,
+  embeddedWallet,
+  darkTheme,
 } from "@thirdweb-dev/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
-const paperWalletConfig = paperWallet({
-  paperClientId: PAPER_CLIENT_ID,
-});
-paperWalletConfig.meta.name = "Email";
-paperWalletConfig.meta.iconURL = "https://ipfs.thirdwebcdn.com/ipfs/QmUUoZxPuAgxKHeT5cCY4vwmN8sZRiV9ptzBhuM47Y24NY/email%20wallet%20shopify.png";
+// const paperWalletConfig = paperWallet({
+//   paperClientId: PAPER_CLIENT_ID,
+// });
+// paperWalletConfig.meta.name = "Email";
+// paperWalletConfig.meta.iconURL = "https://ipfs.thirdwebcdn.com/ipfs/QmUUoZxPuAgxKHeT5cCY4vwmN8sZRiV9ptzBhuM47Y24NY/email%20wallet%20shopify.png";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isPwa, setIsPwa] = useState(false);
@@ -36,11 +42,15 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   const supportedWallets = [
-    ...(PAPER_CLIENT_ID
-      ? [
-        paperWalletConfig,
-      ]
-      : []),
+    // ...(PAPER_CLIENT_ID
+    //   ? [
+    //     paperWalletConfig,
+    //   ]
+    //   : []),
+    metamaskWallet(),
+    coinbaseWallet(),
+    walletConnect(),
+    embeddedWallet(),
   ];
 
   const authConfig: ThirdwebAuthConfig = {
