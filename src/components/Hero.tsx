@@ -1,8 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
+import { Button } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 
 interface HeroProps {
     headline: string;
+    subHeadline: string;
+    ctaText: string;
 }
 
 interface ShaderMaterialUniforms {
@@ -11,8 +15,9 @@ interface ShaderMaterialUniforms {
     u_time: { value: number };
 }
 
-const Hero: React.FC<HeroProps> = ({ headline }) => {
+const Hero: React.FC<HeroProps> = ({ headline, subHeadline, ctaText }) => {
     const mountRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
 
     useEffect(() => {
         const scene = new THREE.Scene();
@@ -25,11 +30,8 @@ const Hero: React.FC<HeroProps> = ({ headline }) => {
             mountRef.current.appendChild(renderer.domElement);
         }
 
-      
-
         const geometry = new THREE.PlaneGeometry(2, 2);
         const material = new THREE.ShaderMaterial({
-            
             vertexShader: `
                 void main() {
                     gl_Position = vec4(position, 1.0);
@@ -41,8 +43,8 @@ const Hero: React.FC<HeroProps> = ({ headline }) => {
 void main() {
     vec2 st = gl_FragCoord.xy / u_resolution.xy;
 
-    // Linear vertical gradient from baby blue to pink
-    vec3 color = mix(vec3(0.54, 0.81, 0.94), vec3(1.0, 0.71, 0.76), st.y);
+    // Linear vertical gradient from black to black
+    vec3 color = mix(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 0.0), st.y);
 
     gl_FragColor = vec4(color, 1.0);
 }
@@ -89,9 +91,15 @@ void main() {
 
     return (
         <div className="hero" ref={mountRef} style={{ position: 'relative', overflow: 'hidden' , maxHeight: "80vh"}}>
-            <h1 className="hero__headline" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', zIndex: 0 , fontSize: "36px", fontWeight: "bold"}}>
+            <h1 className="hero__headline" style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', zIndex: 0 , fontSize: "36px", fontWeight: "bold"}}>
                 {headline}
             </h1>
+            <h2 className="hero__subheadline" style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', zIndex: 0 , fontSize: "24px", fontWeight: "bold"}}>
+                {subHeadline}
+            </h2>
+            <Button onClick={() => router.push('/products')} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 0 , fontSize: "18px", fontWeight: "bold"}}>
+                {ctaText}
+            </Button>
         </div>
     );
 }
