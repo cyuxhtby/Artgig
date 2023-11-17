@@ -3,8 +3,11 @@ import { useContract, useNFT, ThirdwebNftMedia } from "@thirdweb-dev/react";
 import { Image, Skeleton, Text, Flex, Box } from "@chakra-ui/react";
 import { Product } from "@/types";
 import SwiperCore from 'swiper';
+import { Pagination }  from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/pagination';
+
 
 
 
@@ -42,10 +45,11 @@ export const DigitalToPhysical: React.FC<DigitalToPhysicalProps> = ({ product, a
 
 
   const swiperParams = {
+    modules: [Pagination], 
     slidesPerView: 'auto' as const, // you can set this to 'auto' if you want it to adjust based on container width
     pagination: {
       autoHeight: true,
-      el: '.swiper-pagination',
+    
       clickable: true,
       dynamicBullets: true,
       dynamicMainBullets: 3,
@@ -63,6 +67,7 @@ export const DigitalToPhysical: React.FC<DigitalToPhysicalProps> = ({ product, a
     }
   }, [nft, error, loadedImages, swiper]);
 
+  
 
   return (
     <Flex direction="column" gap={4} wrap="nowrap">
@@ -70,7 +75,7 @@ export const DigitalToPhysical: React.FC<DigitalToPhysicalProps> = ({ product, a
         <>
           {/* Mobile render */}
           <Box display={{ base: "block", lg: "none" }} width="100%" maxWidth="50vh" height="100%" overflow="hidden" zIndex="0">
-                <Swiper {...swiperParams} onSwiper={handleSwiperInstance} style={{width: '100%', height: '100%'}}>
+          <Swiper {...swiperParams} onSwiper={handleSwiperInstance} style={{width: '100%', height: '100%', "--swiper-pagination-color": "#FFFFFF","--swiper-pagination-bullet-inactive-color": "#999999" } as React.CSSProperties}>
                     {product.images.edges.map((imageEdge, index) => (
                         <SwiperSlide key={index} style={{  display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden'}} >
                             <Image
@@ -86,6 +91,7 @@ export const DigitalToPhysical: React.FC<DigitalToPhysicalProps> = ({ product, a
                             />
                         </SwiperSlide>
                     ))}
+                    
                 </Swiper>
             </Box>
 

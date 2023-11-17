@@ -88,114 +88,82 @@ const Product: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
     ? SimpleTokenGate
     : ({ children }: any) => children;
 
-  const isWristband = product.title === "Members Club Wristband";
-  const isDripHoodie = product.title === "VIP Members Exclusive Hoodie";
+  // const isSpecialProduct = product.title === "Special Product";
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <GateComponent gateContractAddress={NFT_RECEIPTS_ADDRESS}>
-      <Container
-        maxW={{ base: "100vw", lg: "container.page" }} px={0} py={6}
-      >
-        <Box mt={4} mb={16}>
-          <Link href="/">
+      <Container maxW={{ base: "100vw", lg: "container.page" }} px={0} py={6}>
+        <Box mb={4}>
+          <Link href="/products">
             <Text color="#646D7A" mb={4}>&larr; Back to all products</Text>
           </Link>
-          <Flex direction={{ base: "column", lg: "row" }} h="100vh" align="center" justify="center"  >
-            {/* Product Images */}
-            <Box overflowY="auto" height="100vh" mb={6}>
-              <DigitalToPhysical product={product} activeView={activeView} setActiveView={setActiveView} />
-            </Box>
-            {/* Product Information */}
-            <Box flex="1" top="50%" position="sticky" alignItems="center" mt={6}>
-              <Box
-                width={{ base: "auto", lg: "100%" }}  // Set the width to be auto on mobile and 100% on larger screens
-                marginLeft={{ base: "0", lg: "0" }}  // Set the left margin to 0 on all screen sizes to prevent cutoff
-                marginTop="-40%"  // Center horizontally
-                textAlign={{ base: "left", lg: "left" }}  // Align text to the left on all screen sizes
-                p={{ lg: 12 }}
-              >
-
-                <Flex direction="column" gap={4}>
-                  <Heading as="h1" fontSize="40px" mb={3}>
-                    {product.title}
-                  </Heading>
-                  <Text fontSize="lg" color="#F0F0F" mb={1}>
-                    {product.variants.edges[0].node.priceV2.amount}
-                    {" " + product.variants.edges[0].node.priceV2.currencyCode}
-                  </Text>
-                  <Text fontSize="lg" color="#646D7A" mb={3}>
-                    {product.description}
-                  </Text>
-
-
-                </Flex>
-                <Box mt={2} mb={6}>
-                  <IconButton
-                    icon={<FiPackage size={24} />}
-                    aria-label="Show Product"
-                    variant={activeView === 'product' ? 'solid' : 'outline'}
-                    onClick={() => setActiveView('product')}
-                    m="4px"
-                  />
-                  <IconButton
-                    icon={<RiVipDiamondFill size={20} />}
-                    aria-label="Show NFT"
-                    variant={activeView === 'nft' ? 'solid' : 'outline'}
-                    onClick={() => setActiveView('nft')}
-                    m="4px"
-                  />
-                  <p style={{ paddingTop: "20px" }}><i>Both items included</i></p>
-                </Box>
-                {isWristband && (
-                  <>
-                    <Flex direction="row">
-                      <Text fontSize="md" mt={8} rounded="xl">
-                        Make sure you’re signed into your account before you add to cart to ensure that you receive your {" "}
-                        <Tooltip rounded="24px" p={6} color="#ECECECB2" bg="#17181C" placement="top" label="What is a digital reward? For every physical wristband purchase you make, you will receive a virtual wristband that is uniquely owned by you. This virtual wristband unlocks access to exclusive merchandise across the store.">
-                          <span style={{
-                            fontWeight: "bold",
-                            cursor: "default"
-                          }}>
-                            digital reward.
-                          </span>
-                        </Tooltip>
-                      </Text>
-                    </Flex>
-                    <Box mt={2}>
-                      Purchase your VIP Members Wristband to unlock access to exclusive merchandise across our store.
-                    </Box>
-                  </>
-                )}
-
-                {isDripHoodie && (
-                  <Text fontSize="md" mt={8}>
-                    You are able to purchase this exclusive VIP Members Hoodie because you own a virtual VIP Members wristband
-                  </Text>
-                )}
-                  <Box w={{ base: '100%', lg: '100%' }}>
-                    <NormalProduct
-                      product={product}
-                      selectedSize={selectedSize}
-                      setSelectedSize={setSelectedSize}
-                      incrementProps={incrementProps}
-                      openModal={onOpen}
-                      decrementProps={decrementProps}
-                      inputProps={inputProps}
-                      handleAddToCart={handleAddToCart}
-                    />
-                  </Box>
-              </Box>
-            </Box>
-          </Flex>
         </Box>
+        {/* Main content area */}
+        <Flex direction={{ base: "column", lg: "row" }} h={{ lg: "100vh" }} >
+          {/* Scrollable column for images */}
+          <Box >
+            <DigitalToPhysical product={product} activeView={activeView} setActiveView={setActiveView} />
+          </Box>        
+          {/* Fixed column for product information */}
+          <Box
+            position={{base: "relative", lg: "fixed"}}
+            top="8"
+            right="0"
+            h={{ base: "auto", lg: "100vh" }}
+            w={{ base: "full", lg: "50%" }}
+            p={{ base: 4, lg: 20 }}
+            zIndex="2" //above overlay 
+          >
+            <Flex direction="column" gap={4} h="full" justify="center" alignItems="start">
+              <Heading as="h1" fontSize="40px" mb={3}>
+                {product.title}
+              </Heading>
+              <Text fontSize="lg" color="#646D7A" >
+                {product.description}
+              </Text>
+              <Text fontSize="lg" color="#F0F0F" mb={1}>
+                {product.variants.edges[0].node.priceV2.amount}{" "}
+                {product.variants.edges[0].node.priceV2.currencyCode}
+              </Text>
+              
+              <Box mt={2} mb={-4}>
+                <IconButton
+                  icon={<FiPackage size={24} />}
+                  aria-label="Show Product"
+                  variant={activeView === 'product' ? 'solid' : 'outline'}
+                  onClick={() => setActiveView('product')}
+                  m="4px"
+                />
+                <IconButton
+                  icon={<RiVipDiamondFill size={20} />}
+                  aria-label="Show NFT"
+                  variant={activeView === 'nft' ? 'solid' : 'outline'}
+                  onClick={() => setActiveView('nft')}
+                  m="4px"
+                />
+                <Text color="#646D7A" style={{ paddingTop: "10px" } } ><i>Both items included</i></Text>
+              </Box>
+              <Box w={{ base: '100%', lg: '100%' }}>
+                <NormalProduct
+                  product={product}
+                  selectedSize={selectedSize}
+                  setSelectedSize={setSelectedSize}
+                  incrementProps={incrementProps}
+                  openModal={onOpen}
+                  decrementProps={decrementProps}
+                  inputProps={inputProps}
+                  handleAddToCart={handleAddToCart}
+                />
+              </Box>
+            </Flex>
+          </Box>
+        </Flex>
       </Container>
       <UpsellModal isOpen={isOpen} onSubmit={handleAddToCart} onClose={onClose} />
     </GateComponent>
   );
-
-
 };
 
 export default Product;
