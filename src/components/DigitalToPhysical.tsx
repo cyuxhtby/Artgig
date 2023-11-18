@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useContract, useNFT, ThirdwebNftMedia } from "@thirdweb-dev/react";
 import { Image, Skeleton, Text, Flex, Box } from "@chakra-ui/react";
 import { Product } from "@/types";
@@ -7,9 +7,6 @@ import { Pagination }  from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
-
-
 
 
 
@@ -56,17 +53,17 @@ export const DigitalToPhysical: React.FC<DigitalToPhysicalProps> = ({ product, a
     }
   };
 
+  const imagesLength = useMemo(() => product.images.edges.length, [product.images.edges]);
 
   useEffect(() => {
     if (nft || error) {
       setHasCheckedNFT(true);
     }
-    if(loadedImages === product.images.edges.length && swiper && swiper.update){
+    if(loadedImages === imagesLength && swiper && swiper.update){
       swiper.update();
       swiper.slideTo(0)
     }
-  }, [nft, error, loadedImages, swiper]);
-
+  }, [nft, error, loadedImages, swiper, imagesLength]);
   
 
   return (

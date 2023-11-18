@@ -13,7 +13,7 @@ export default function Home() {
         </Button>
         </Link>
         <div style={{ padding: "20px" }}>
-        <Hero />
+      
         </div>
       </Flex>
     

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tldraw, TldrawEditor, DefaultColorStyle, Editor } from '@tldraw/tldraw';
-import '@tldraw/tldraw/tldraw.css';
+// import '@tldraw/tldraw/tldraw.css'
 
 const Hero = () => {
   const handleMount = (editor: Editor) => {
