@@ -20,7 +20,7 @@ import {
   metamaskWallet,
   coinbaseWallet,
   walletConnect,
-  ConnectWallet,
+  phantomWallet,
   embeddedWallet,
   darkTheme,
 } from "@thirdweb-dev/react";
@@ -50,6 +50,7 @@ export default function App({ Component, pageProps }: AppProps) {
     metamaskWallet(),
     coinbaseWallet(),
     walletConnect(),
+    phantomWallet(),
     embeddedWallet(),
   ];
 
