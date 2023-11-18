@@ -13,12 +13,12 @@ export default function ProductsPage({ products }: { products: Product[] }) {
 
   return (
     <div>
-    <Flex direction="column" pt="18%">
-      <Products products={customOrderToProducts} />
-    </Flex>
+      <Flex direction="column" pt="12%"  alignItems="center">
+        <Products products={customOrderToProducts} />
+      </Flex>
     </div>
   );
-}
+  }
 
 export async function getStaticProps() {
   try {

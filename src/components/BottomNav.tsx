@@ -10,14 +10,14 @@ const BottomNav: React.FC = () => {
       bottom="0"
       w="full"
       bg="white"
-      p={4}
+      p={1}
       boxShadow="md"
       style={{ zIndex: 10 }}
     >
-      <Flex justifyContent="space-around" alignItems="center">
+      <Flex justifyContent="space-around " alignItems="center">
         {/* Link to Home */}
         <Link href="/" aria-label="Home" color="black">
-        <p>Main</p>
+          <p>Home</p>
         </Link>
 
         {/* Link to Collectables */}
@@ -27,22 +27,24 @@ const BottomNav: React.FC = () => {
 
         {/* Link to Cart */}
         <Link href="/cart" aria-label="Cart" color="black">
-        <p>Cart</p>
+          <p>Cart</p>
         </Link>
 
         {/* Signin Button */}
-        <ConnectWallet
-        theme={lightTheme({
-          colors: {
-            accentText: "#8f33ff",
-            accentButtonBg: "#8f33ff",
-          },
-        })}
-        btnTitle={"Sign in"}
-        auth={{ loginOptional: false }}
-        switchToActiveChain={true}
-        modalSize={"compact"}
-      />
+        <Box mr={-4}>
+          <ConnectWallet
+            theme={lightTheme({
+              colors: {
+                accentText: "#8f33ff",
+                accentButtonBg: "#8f33ff",
+              },
+            })}
+            btnTitle={"Sign in"}
+            auth={{ loginOptional: false }}
+            switchToActiveChain={true}
+            modalSize={"compact"}
+          />
+        </Box>
       </Flex>
     </Box>
   );

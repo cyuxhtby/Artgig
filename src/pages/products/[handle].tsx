@@ -94,7 +94,7 @@ const Product: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   return (
     <GateComponent gateContractAddress={NFT_RECEIPTS_ADDRESS}>
-      <Container maxW={{ base: "100vw", lg: "container.page" }} px={0} py={6}>
+      <Container maxW={{ base: "100vw", lg: "container.page" }} px={0} py={6} mb={{ base: 16, lg: 0}}>
         <Box mb={4}>
           <Link href="/products">
             <Text color="#646D7A" mb={4}>&larr; Back to all products</Text>
