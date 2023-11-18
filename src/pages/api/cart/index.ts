@@ -9,7 +9,8 @@ export default async function handler(
     case "GET":
       const cartId = req.cookies.cart;
       if (!cartId) {
-        res.status(404).json({ error: "No cart found" });
+        // there is no cart until user adds product
+        res.status(200).json({ message: "No cart yet" });
         return;
       }
       try {
