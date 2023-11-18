@@ -10,7 +10,8 @@ import {
   Link,
   Flex,
 } from '@chakra-ui/react';
-import { AiFillCaretRight } from 'react-icons/ai';
+import { PiCaretRightBold } from "react-icons/pi";
+
 
 const Sidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,19 +34,9 @@ const Sidebar = () => {
         transform="translateY(-50%)"
         zIndex="modal"
       >
-        <IconButton
-          aria-label="Open Sidebar"
-          icon={isOpen ? <></> : <AiFillCaretRight/>}
-          color="black"
-          bg="white"  // Transparent background
-          opacity={0.8}
-          minWidth="20px"
-          height="80px"
-          borderRightRadius="10px"
-          borderLeftRadius="0px"
-          transition="left 0.5s"
-          ref={btnRef}
-        />
+        <Box pl={2}>
+          <PiCaretRightBold size={24} />
+        </Box>
 
         <Drawer placement="left" onClose={onClose} isOpen={isOpen} finalFocusRef={btnRef}>
           <DrawerOverlay>
