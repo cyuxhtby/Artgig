@@ -1,4 +1,4 @@
-import  Hero  from "@/components/Hero";
+// import  Hero  from "@/components/Hero";
 import { Flex, Button } from "@chakra-ui/react";
 import Link from "next/link";
 

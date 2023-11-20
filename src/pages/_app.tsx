@@ -26,6 +26,8 @@ import {
 } from "@thirdweb-dev/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { NextPage } from 'next';
+
 
 // const paperWalletConfig = paperWallet({
 //   paperClientId: PAPER_CLIENT_ID,
