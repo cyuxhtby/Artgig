@@ -2,6 +2,9 @@
 import { Box, Flex, Link, IconButton } from '@chakra-ui/react';
 import { Signin } from "./Signin"; 
 import { ConnectWallet,lightTheme } from '@thirdweb-dev/react';
+import { GoHome } from "react-icons/go";
+import { RiVipDiamondFill } from "react-icons/ri";
+import { FaCartShopping } from "react-icons/fa6";
 
 const BottomNav: React.FC = () => {
   return (
@@ -17,17 +20,20 @@ const BottomNav: React.FC = () => {
       <Flex justifyContent="space-around " alignItems="center">
         {/* Link to Home */}
         <Link href="/" aria-label="Home" color="black">
-          <p>Home</p>
+          <GoHome />
+        
         </Link>
 
         {/* Link to Collectables */}
         <Link href="/collectables" aria-label="Your Collection" color="black">
-          <p>Collectibles</p>
+          <RiVipDiamondFill />
+          
         </Link>
 
         {/* Link to Cart */}
         <Link href="/cart" aria-label="Cart" color="black">
-          <p>Cart</p>
+          <FaCartShopping />
+          
         </Link>
 
         {/* Signin Button */}
