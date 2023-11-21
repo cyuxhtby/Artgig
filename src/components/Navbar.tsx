@@ -68,7 +68,7 @@ export const Navbar: React.FC = () => {
           justifyContent="space-between"
           alignItems="center"
           py={4} 
-          px={{ base: "10%", md: "10%" }}
+          px={{ base: "4%", md: "10%" }}
           ml={{base:'-15px', md:'0px'}}
         >
           <Link href="/">
@@ -92,7 +92,7 @@ export const Navbar: React.FC = () => {
                     position="relative"
                     color="black"
                     bg="white"
-                    p={1}
+                    p={0}
                     fontSize="s"
                     borderRadius="full"
                     _hover={{
@@ -107,8 +107,8 @@ export const Navbar: React.FC = () => {
                   </Badge>
                 </Link>
               </Box>
-            )}
-            <ConnectWallet
+            )}<Box mr={{base:'-30px', md:'0px'}}>
+              <ConnectWallet
         theme={lightTheme({
           colors: {
             accentText: "#8f33ff",
@@ -120,6 +120,8 @@ export const Navbar: React.FC = () => {
         switchToActiveChain={true}
         modalSize={"compact"}
       />
+            </Box>
+            
           </Flex>
         </Flex>
       </Container>
