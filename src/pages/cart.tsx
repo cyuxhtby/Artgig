@@ -66,9 +66,9 @@ export default function CartPage() {
                     <Flex key={id} alignItems="center" gap={4}>
                       <Image alt={altText} src={url} w="75px" alignSelf="start" />
                       <Text fontSize="xl">{title}</Text>
-                      <Flex justifySelf="end" ml="auto">
+                      <Flex justifySelf="end" ml={{ base: "-5", md: "100px" }} >
                       <Quantity item={node} gated={tags.includes("gated")} />
-                    </Flex>
+                      </Flex>
                   </Flex>
                 );
               })}

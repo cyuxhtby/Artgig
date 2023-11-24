@@ -74,8 +74,8 @@ export const Quantity: FC<QuantityProps> = ({ item, gated }) => {
   const input = getInputProps();
 
   return (
-    <Flex alignItems="center" gap={4}>
-      <Flex maxW="150px">
+    <Flex alignItems="center" gap={0} overflow="visible">
+      <Flex minWidth="140px" maxW="180px">
         <Button roundedRight="none" {...dec}>
           -
         </Button>
