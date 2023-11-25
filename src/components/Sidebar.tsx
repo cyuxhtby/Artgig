@@ -63,9 +63,8 @@ const Sidebar = () => {
   };
   
   const links = [
+    { title: 'Products', url: '/products' },
     { title: 'Your Collection', url: '/collectables' },
-    { title: 'Creater Studio', url: '/studio' },
-    // add more links as needed
   ];
 
   return (

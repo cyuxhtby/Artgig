@@ -113,8 +113,7 @@ const Product: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
             right="0"
             h={{ base: "auto", lg: "100vh" }}
             w={{ base: "full", lg: "50%" }}
-            p={{ base: 4, lg: 20 }}
-            zIndex="2" //above overlay 
+            p={{ base: 4, lg: "8%" }}
           >
             <Flex direction="column" gap={4} h="full" justify="center" alignItems="start">
               <Heading as="h1" fontSize="40px" mb={3}>

@@ -27,9 +27,7 @@ const useFetchNFTs = (contractAddress: string) => {
 const Collectables: React.FC = () => {
   const address = useAddress();
   const contractAddresses = [
-    "0x120C07FB4170f5102528a5c6Cf1324106CD44f0f",
-    "0x5fDCeC241e0dEB47441fd94Ff7DEa82b8847e0c1",
-    // Add more contract addresses here
+    "0x58d1CCF9d591731Fb428C6411f4Cd997a1c5EFC9" //AYOS24
   ];
 
   const nftDataArray = contractAddresses.map(useFetchNFTs);
@@ -40,7 +38,7 @@ const Collectables: React.FC = () => {
 
   // Check if wallet is connected
   if (!address) {
-    return <Text mt={20} align="center" fontSize="xx-large" fontWeight="bold">Sign in to view your collectables</Text>;
+    return <Text mt={20} align="center" fontSize="xx-large" fontWeight="bold">Sign in to view your digital items</Text>;
   }
 
   // Log errors for debugging

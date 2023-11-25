@@ -14,18 +14,14 @@ const Hero = () => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      height="100vh"
+      height="75%"
     >
       <VStack spacing={4}>
         <Text
-          color="white" 
-          fontSize="3em"
-          textTransform="uppercase"
-          sx={{
-            animation: `${glow} 2s ease-in-out infinite`
-          }}
+           fontSize={['4xl', '5xl']} 
+           fontWeight="bold"
         >
-          Black Friday Sale
+          END OF YEAR SALE
         </Text>
         <Link href="/products" passHref>
           <Button > 
