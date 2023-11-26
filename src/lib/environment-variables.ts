@@ -13,5 +13,5 @@ export const PAPER_CLIENT_ID = process.env.NEXT_PUBLIC_PAPER_CLIENT_ID || "";
 export const THIRDWEB_CLIENT_ID = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID || ""; 
 // thirdweb client secret key (if using on server)
 export const THIRDWEB_SECRET_KEY = process.env.NEXT_PUBLIC_THIRDWEB_SECRET_KEY || ""; 
-
-
+// pipedream url for contact form 
+export const PIPEDREAM_URL =  process.env.PIPEDREAM_URL || "";

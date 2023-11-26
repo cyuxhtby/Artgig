@@ -40,7 +40,6 @@ export default function Contact() {
 
   return (
     <div>
-      {/* Contact Form Section */}
       <Flex
         as="form" 
         onSubmit={handleSubmit} 
@@ -48,13 +47,14 @@ export default function Contact() {
         align="center"
         justify="center"
         minHeight="100vh"
-        w="full"
-        p={10}
+        w="100%"
+        px={{ base: 0, md: 24 }} 
+        py={10}
       >
         <Heading fontSize={["2xl", "3xl"]} mb={6}>
           Get In Touch
         </Heading>
-        <Box minW={{ base: "90%", md: "468px" }}>
+        <Box width="100%" px={{ base: 4, md: 0 }}>
           <Flex direction="column" gap={4}>
             <Input
               placeholder="Name"
