@@ -15,13 +15,15 @@ const Hero = () => {
       justifyContent="center"
       alignItems="center"
       height="75%"
+      w={"100%"}
+      px={{ base: 4, md: 24 }}
     >
       <VStack spacing={4}>
         <Text
-           fontSize={['4xl', '5xl']} 
+           fontSize={{base: "2.1rem", md: "5xl"}} 
            fontWeight="bold"
         >
-          END OF YEAR SALE
+          YEAR END SALE
         </Text>
         <Link href="/products" passHref>
           <Button > 
