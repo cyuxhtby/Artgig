@@ -101,7 +101,7 @@ const handleSubmit = async (e : React.FormEvent<HTMLDivElement>) => {
         align="center"
         justify="center"
         minHeight="100vh"
-        w={{base: "92%", md: "60%"}}
+        w={{base: "92%", md: "60%", lg: "50%"}}
         
       >
         <Heading fontSize={["2xl", "3xl"]} mb={6}>
