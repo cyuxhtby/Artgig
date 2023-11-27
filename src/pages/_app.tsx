@@ -82,7 +82,7 @@ export default function App({ Component, pageProps }: AppProps) {
           secretKey={THIRDWEB_SECRET_KEY}
         >
           <Head>
-            <title>Commerce Reimagined</title>
+            <title>Artgig</title>
           </Head>
           {isPwa ? null : <Navbar/>}
           <Container maxW="container.page" flexGrow={1}>
