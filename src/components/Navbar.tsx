@@ -7,13 +7,20 @@ import {
   Flex,
   Image,
   Slide,
+  IconButton,
+  useDisclosure
 } from "@chakra-ui/react";
 import Link from "next/link";
 
 import { Signin } from "./Signin";
 import { ConnectWallet, lightTheme } from '@thirdweb-dev/react';
+import { IoMenu } from "react-icons/io5";
+import Sidebar from './Sidebar';
+
+
 
 export const Navbar: React.FC = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure(); 
   const { data: cart, isLoading } = useCart();
   const lastScrollTop = useRef(0);
   const [isScrolledUp, setIsScrolledUp] = useState(true);
@@ -71,9 +78,19 @@ export const Navbar: React.FC = () => {
           px={{ base: "4%", md: "10%" }}
           ml={{base:'-15px', md:'0px'}}
         >
+          {/* IoMenu Icon for Mobile View */}
+          <IconButton
+              aria-label="Open menu"
+              icon={<IoMenu size={24} />}
+              display={{ base: "flex", sm: "none" }}
+              color="black"
+              variant="unstyled" // Removes default styling
+              onClick={onOpen}
+              mr={{base :"-4rem", sm:"-40%"}}
+            />
           <Link href="/">
-            <Flex gap={4} justifyContent="center" alignItems="center">
-              <Image src="/artgig.svg" alt="logo" h={14} />
+            <Flex gap={2} pr={{base: "20px", sm: "0"}} >
+              <Image src="/artgig.svg" alt="Artgig logo" h={{base: "10", md: "14"}}  />
             </Flex>
           </Link>
           <Flex
@@ -126,6 +143,7 @@ export const Navbar: React.FC = () => {
         </Flex>
       </Container>
     </Slide>
+    <Sidebar isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
     </div>
   );
 };

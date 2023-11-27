@@ -13,9 +13,19 @@ import {
 } from '@chakra-ui/react';
 import { PiCaretRightBold } from "react-icons/pi";
 
+interface SidebarProps {
+  isOpen?: boolean;
+  onOpen?: () => void;
+  onClose?: () => void;
+}
 
-const Sidebar = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+const Sidebar: React.FC<SidebarProps> = ({ isOpen: controlledIsOpen, onOpen: controlledOnOpen, onClose: controlledOnClose }) => {
+  
+  const disclosure = useDisclosure();
+  const isOpen = controlledIsOpen ?? disclosure.isOpen;
+  const onOpen = controlledOnOpen ?? disclosure.onOpen;
+  const onClose = controlledOnClose ?? disclosure.onClose;
+  
   const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallButton, setShowInstallButton] = useState(false);
   const btnRef = React.useRef(null);
@@ -64,7 +74,8 @@ const Sidebar = () => {
   
   const links = [
     { title: 'Products', url: '/products' },
-    { title: 'Your Collection', url: '/collectables' },
+    { title: 'Collectables', url: '/collectables' },
+    { title: 'Cart', url: '/cart'}
   ];
 
   return (
@@ -78,7 +89,7 @@ const Sidebar = () => {
         transform="translateY(-50%)"
         zIndex="modal"
       >
-        <Box pl={2}>
+        <Box pl={2} display={{base: "none" , sm: "flex"}}>
           <PiCaretRightBold size={24} />
         </Box>
 
