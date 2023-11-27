@@ -23,7 +23,7 @@ const Hero = () => {
            fontSize={{base: "2.1rem", md: "5xl"}} 
            fontWeight="bold"
         >
-          YEAR END SALE
+          YEAR END DROP
         </Text>
         <Link href="/products" passHref>
           <Button > 
