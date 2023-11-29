@@ -76,15 +76,13 @@ export const DigitalToPhysical: React.FC<DigitalToPhysicalProps> = ({ product, a
                     {product.images.edges.map((imageEdge, index) => (
                         <SwiperSlide key={index} style={{  display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden'}} >
                             <Image
-                                onLoad={handleImageLoad}
-                                objectFit="contain"
-                                src={imageEdge.node.originalSrc}
-                                alt={imageEdge.node.altText}
-                                borderRadius="lg"
-                                padding="5px"
-                                overflow='hidden'
-                                
-                                
+                                 onLoad={handleImageLoad}
+                                 objectFit="contain"
+                                 src={imageEdge.node.originalSrc}
+                                 alt={imageEdge.node.altText}
+                                 borderRadius="10px"
+                                 padding="5px"
+                                 overflow='hidden'                         
                             />
                         </SwiperSlide>
                     ))}
@@ -111,22 +109,22 @@ export const DigitalToPhysical: React.FC<DigitalToPhysicalProps> = ({ product, a
       )}
       {activeView === 'nft' && assetContract && (
         <>
-          <Box display={{ base: "block", lg: "none" }} width="100%" maxWidth="50vh" height="100%">
+          <Box display={{ base: "block", lg: "none" }} width="100%" maxWidth="50vh" height="100%" borderRadius="10px" overflow="hidden">
             {isLoading ? (
               <Skeleton isLoaded={!isLoading} startColor="gray.500" endColor="gray.700" width="100%" height="100%" />
             ) : error ? (
               <Text color="red.500">Error loading NFT.</Text>
             ) : nft ? (
-              <ThirdwebNftMedia metadata={nft.metadata} width="100%" height="100%" style={{ borderRadius: '10px', objectFit: 'cover' }} />
+              <ThirdwebNftMedia metadata={nft.metadata} width="100%" height="100%" />
             ) : null}
           </Box>
-          <Box display={{ base: "none", lg: "block" }} width="100%" maxWidth="600px" height="100%">
+          <Box display={{ base: "none", lg: "block" }} width="100%" maxWidth="600px" height="100%" borderRadius="10px" overflow="hidden">
             {isLoading ? (
               <Skeleton isLoaded={!isLoading} startColor="gray.500" endColor="gray.700" width="100%" height="100%" />
             ) : error ? (
               <Text color="red.500">Error loading NFT.</Text>
             ) : nft ? (
-              <ThirdwebNftMedia metadata={nft.metadata} width="100%" height="100%" style={{ borderRadius: '10px', objectFit: 'cover' }} />
+              <ThirdwebNftMedia metadata={nft.metadata} width="100%" height="100%"  />
             ) : null}
           </Box>
         </>

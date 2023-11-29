@@ -112,7 +112,7 @@ export const Navbar: React.FC = () => {
                       color="black"
                       bg="white"
                       p={0}
-                      mr={"-10px"}
+                      mr={{base: "-8px", md: "0"}}
                       fontSize="s"
                       borderRadius="full"
                       _hover={{

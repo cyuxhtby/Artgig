@@ -12,6 +12,8 @@ import {
   Tag,
   Text,
   Skeleton,
+  background,
+  Box
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useContract, useNFT, ThirdwebNftMedia } from "@thirdweb-dev/react";
@@ -69,7 +71,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </Tag>
       )}
       <CardBody>
-        <AspectRatio ratio={1}>
+        <Box borderRadius="lg" overflow="hidden">
           {!assetContract ? (
             <Image objectFit="contain" src={src} alt={alt} borderRadius="lg" width="100%" height="100%" />
           ) : !hasCheckedNFT || isLoading ? (
@@ -77,11 +79,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           ) : error ? (
             <Text color="red.500">Error loading NFT.</Text>
           ) : nft ? (
-            <ThirdwebNftMedia metadata={nft.metadata} width="100%" height="100%" style={{ borderRadius: '10px' }} />
+            <ThirdwebNftMedia metadata={nft.metadata} width="100%" height="100%" style={{ borderRadius: '10px' }}/>
           ) : (
             <Image objectFit="contain" src={src} alt={alt} borderRadius="lg" width="100%" height="100%" />
           )}
-        </AspectRatio>
+        </Box>
         <Flex direction="column" gap={2} mt={4}>
           <Flex align="center" justify="space-between">
             <LinkOverlay as={Link} href={`/products/${handle}`}>
