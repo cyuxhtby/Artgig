@@ -180,24 +180,26 @@ export default async function handler(
     
       console.time("prepare")
       // For each item purchased, mint the wallet address an NFT
-      const claimPromises = itemsPurchased.map(async (item) => {
+      const claimPromises = itemsPurchased.map(async (item, index) => {
         // Grab the information of the product ordered
         const product = item.variant.product;
 
-        // claim lazy minted NFT
+        // claim lazy minted NFTs
         // Warning: use of `any` 
         const preparedTx : any = await nftCollection.erc721.claimTo.prepare(wallet, item.quantity);
+        console.log(`Claim prepared for wallet: ${wallet}, item: ${index + 1}/${itemsPurchased.length} from contract ${productContract} for product ${product}`);
        
 
         return preparedTx;
       });
 
-      console.timeLog("prepare")
+      console.timeEnd("prepare")
 
       console.time("minting")
       // Await all promises to resolve
       await Promise.all(claimPromises)
-        .then((txs) => Promise.all(txs.map(async (tx) => {
+        .then((txs) => Promise.all(txs.map(async (tx, index) => {
+          console.log(`Processing delegation for wallet: ${wallet}, item: ${index + 1}/${txs.length}`);
           const request = await prepareGaslessRequest(tx);
           const url = new URL(request.url);
           const options = {
@@ -222,7 +224,7 @@ export default async function handler(
         .catch((err) => {
         console.error("Error in minting process:", err);
       });
-      console.timeLog("minting")
+      console.timeEnd("minting")
 
       res.status(200).send("OK");
     } else {
