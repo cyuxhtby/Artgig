@@ -5,10 +5,10 @@ import { MdCheckCircle } from 'react-icons/md';
 const InfoPage = () => {
   return (
     <Box p={{ base: 4, md: 8 }} pb={8}>
-      <Heading as="h1"  mb={4}>Digital Collectibles</Heading>
+      <Heading as="h1" size={{base: "lg", md: "2xl"}} mb={4}>Digital Collectibles</Heading>
       
       <Text fontSize={{ base: "sm", md: "xl" }} mb={4}>
-        Digital collectibles are unique, virtual items stored on a blockchain. They can represent anything from artwork and music to virtual real estate and beyond. Each collectible is verified for authenticity and ownership using blockchain technology, making them rare and valuable.
+        Digital collectibles are individual, virtual items stored on a blockchain. They can represent anything from artwork and music to virtual real estate and beyond. Each collectible is verified for authenticity and ownership using blockchain technology.
       </Text>
 
       <Heading as="h2" size={{base: "lg", md: "xl"}} mb={4}>Benefits in E-Commerce</Heading>
@@ -27,7 +27,7 @@ const InfoPage = () => {
         </ListItem>
         <ListItem>
           <ListIcon as={MdCheckCircle} color="green.500" />
-          <strong>Tradeability:</strong> The ability to buy, sell, or trade collectibles adds a layer of interactivity and value appreciation.
+          <strong>Tradeability:</strong> The ability to buy, sell, or trade collectibles adds a layer of interactivity and fun.
         </ListItem>
       </List>
 
@@ -37,7 +37,7 @@ const InfoPage = () => {
       </Text>
 
       <Text fontSize={{ base: "sm", md: "lg" }} mb={4}>
-        These types of online shopping experiences, while exciting, are still in their infancy. We're here to assist with any issues that may arise and welcome your feedback to help us improve. <Link href='/#contact' style={{ textDecoration: "underline" }}>Get in touch</Link>
+        These types of online shopping experiences, while exciting, are still in their infancy. We&apos;re here to assist with any issues that may arise and welcome your feedback to help us improve. <Link href='/#contact' style={{ textDecoration: "underline" }}>Get in touch</Link>
       </Text>
     </Box>
   );
