@@ -102,6 +102,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
+  console.log("Received request at", new Date().toISOString());
+  console.log("Request Headers:", req.headers);
   try {
     const secretKey = process.env.SHOPIFY_WEBHOOK_KEY as string;
 
@@ -115,6 +117,7 @@ export default async function handler(
     // Compare our hash to Shopify's hash
     if (hash === hmac) {
       const shopifyOrderId = req.headers["x-shopify-order-id"];
+      console.log("Shopify order ID:", shopifyOrderId);
 
       const response = await shopifyFetchAdminAPI({
         query: GET_ORDER_BY_ID_QUERY,
