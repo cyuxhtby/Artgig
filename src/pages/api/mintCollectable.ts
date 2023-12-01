@@ -190,7 +190,7 @@ export default async function handler(
         // claim lazy minted NFTs
         // Warning: use of `any` 
         const preparedTx : any = await nftCollection.erc721.claimTo.prepare(wallet, item.quantity);
-        console.log(`Claim prepared for wallet: ${wallet}, item: ${index + 1}/${itemsPurchased.length} from contract ${productContract} for product ${product}`);
+        console.log(`Claim prepared for wallet: ${wallet} from contract ${productContract} for product ${JSON.stringify(product)}`);
        
 
         return preparedTx;

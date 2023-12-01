@@ -27,7 +27,7 @@ const useFetchNFTs = (contractAddress: string) => {
 const Collectables: React.FC = () => {
   const address = useAddress();
   const contractAddresses = [
-    "0x58d1CCF9d591731Fb428C6411f4Cd997a1c5EFC9" //AYOS24
+    "0x401F7069E7524E70f121D119f26eBba45aA85a67" //AYOS24
   ];
 
   const nftDataArray = contractAddresses.map(useFetchNFTs);
@@ -78,7 +78,7 @@ const Collectables: React.FC = () => {
           ))}
         </Grid>
 
-        <Link href="/export" passHref>
+        {/* <Link href="/export" passHref>
           <Button
             as="a"
             mt={16}
@@ -93,7 +93,7 @@ const Collectables: React.FC = () => {
           >
             Export collection
           </Button>
-        </Link>
+        </Link> */}
 
       </Flex>
     </Container>
