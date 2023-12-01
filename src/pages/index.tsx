@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FiPackage } from "react-icons/fi";
 import { RiVipDiamondFill } from "react-icons/ri";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import { color } from 'framer-motion';
 
 export default function Home() {
 
@@ -89,13 +90,14 @@ const handleSubmit = async (e : React.FormEvent<HTMLDivElement>) => {
           <Icon as={RiVipDiamondFill} w={12} h={12} />
         </Flex>
         <Text fontSize="lg" mt={4} textAlign="center" maxW="lg" pb={4} fontWeight="bold">
-          The purchase of an item grants a digital collectable to your account
+          The purchase of an item grants a digital collectable to your account. <Link href="/info" style={{ textDecoration: "underline"}}>Learn more</Link>
         </Text>
       </Flex>
 
       {/* Contact Form Section */}
       <Flex
         as="form" 
+        id="contact"
         onSubmit={handleSubmit} 
         direction="column"
         align="center"

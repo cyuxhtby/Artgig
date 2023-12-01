@@ -142,7 +142,7 @@ const Product: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
                   onClick={() => setActiveView('nft')}
                   m="4px"
                 />
-                <Text color="#646D7A" style={{ paddingTop: "20px" } } ><i>Shipping calculated at checkout</i></Text>
+              <Text color="#646D7A" fontSize="md" style={{ paddingTop: "10px" } } ><i>Shipping calculated at checkout</i></Text>
 
               </Box>
               <Box w={{ base: '100%', lg: '100%' }}>
