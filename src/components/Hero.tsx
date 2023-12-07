@@ -1,34 +1,20 @@
 import React from 'react';
-import { Box, Text, VStack, keyframes, Button } from "@chakra-ui/react";
-import Link from "next/link";
+import { Box, VStack, Link, Button, Text } from '@chakra-ui/react';
+import Snowfall from 'react-snowfall';
 
-const glow = keyframes`
-  0% { text-shadow: 0 0 10px #808080, 0 0 20px #808080, 0 0 30px #808080, 0 0 40px #808080; }
-  100% { text-shadow: 0 0 20px #808080, 0 0 30px #808080, 0 0 40px #808080, 0 0 50px #808080, 0 0 60px #808080; }
-`;
-
-const Hero = () => {
+const Hero: React.FC = () => {
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      height="75%"
-      w={"100%"}
-      px={{ base: 4, md: 24 }}
-    >
-      <VStack spacing={4}>
-        <Text
-           fontSize={{base: "2.1rem", md: "5xl"}} 
-           fontWeight="bold"
-        >
+    <Box position="relative" display="flex" flexDirection="column" justifyContent="center" alignItems="center" height="75%" w={"100%"} px={{ base: 4, md: 24 }}>
+      <Snowfall 
+        snowflakeCount={50}
+        wind={[-1.5, 1.0]}
+      />
+      <VStack spacing={4} zIndex={2}>
+        <Text fontSize={{ base: "2.1rem", md: "5xl" }} fontWeight="bold">
           YEAR END DROP
         </Text>
-        <Link href="/products" passHref>
-          <Button > 
-            Shop Now
-          </Button>
+        <Link href="/products">
+          <Button>Shop Now</Button>
         </Link>
       </VStack>
     </Box>
