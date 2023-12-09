@@ -10,6 +10,7 @@ const InfoPage = () => {
       <Text fontSize={{ base: "sm", md: "xl" }} mb={4}>
         Digital collectibles are individual, virtual items stored on a blockchain. They can represent anything from artwork and music to virtual real estate and beyond. Each collectible is verified for authenticity and ownership using blockchain technology.
       </Text>
+      <Text  mb={4} fontWeight="bold" fontSize={{ base: "sm", md: "xl" }}>These collectables are used for future in-store mechanics and have no expectation of value appreciation</Text>
 
       <Heading as="h2" size={{base: "lg", md: "xl"}} mb={4}>Benefits in E-Commerce</Heading>
       <List spacing={3} mb={4}>
@@ -37,7 +38,7 @@ const InfoPage = () => {
       </Text>
 
       <Text fontSize={{ base: "sm", md: "lg" }} mb={4}>
-        These types of online shopping experiences, while exciting, are still in their infancy. We&apos;re here to assist with any issues that may arise and welcome your feedback to help us improve. <Link href='/#contact' style={{ textDecoration: "underline" }}>Get in touch</Link>
+        The possibilities of such online shopping experiences are quite exciting, but they are still in their infancy. We&apos;re here to assist with any issues that may arise and welcome your feedback to help us improve. <Link href='/#contact' style={{ textDecoration: "underline" }}>Get in touch</Link>
       </Text>
     </Box>
   );
