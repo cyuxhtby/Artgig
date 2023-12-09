@@ -8,7 +8,7 @@ const InfoPage = () => {
       <Heading as="h1" size={{base: "lg", md: "2xl"}} mb={4}>Digital Collectibles</Heading>
       
       <Text fontSize={{ base: "sm", md: "xl" }} mb={4}>
-        Digital collectibles are individual, virtual items stored on a blockchain. They can represent anything from artwork and music to virtual real estate and beyond. Each collectible is verified for authenticity and ownership using blockchain technology.
+         Digital collectibles are individual, virtual items stored on a blockchain. They can represent anything from artwork and music to virtual real estate and beyond. Each collectible is verified for authenticity and ownership using blockchain technology.
       </Text>
       <Text  mb={4} fontWeight="bold" fontSize={{ base: "sm", md: "xl" }}>These collectables are used for future in-store mechanics and have no expectation of value appreciation</Text>
 
