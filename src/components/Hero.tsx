@@ -1,23 +1,32 @@
 import React from 'react';
-import { Box, VStack, Link, Button, Text } from '@chakra-ui/react';
-import Snowfall from 'react-snowfall';
+import { Box, Text, VStack } from '@chakra-ui/react';
+import Image from 'next/image';
 
-const Hero: React.FC = () => {
+const Hero = () => {
   return (
-    <Box position="relative" display="flex" flexDirection="column" justifyContent="center" alignItems="center" height="75%" w={"100%"} px={{ base: 4, md: 24 }}>
-      <Snowfall 
-        snowflakeCount={50}
-        wind={[-1.5, 1.0]}
-      />
-      <VStack spacing={4} zIndex={2}>
-        <Text fontSize={{ base: "2.1rem", md: "5xl" }} fontWeight="bold">
-          YEAR END DROP
+    <VStack
+      justifyContent="center"
+      alignItems="center"
+      height="80%"
+      spacing={4}
+    >
+      <Box as="span" position="relative" display="inline-flex" alignItems="center" justifyContent="center">
+        <Text fontSize={{ base: '4xl', md: '6xl' }} fontWeight="bold" color="white">
+          FRIEND DAY
         </Text>
-        <Link href="/products">
-          <Button>Shop Now</Button>
-        </Link>
-      </VStack>
-    </Box>
+        <Box as="span" position="absolute" right="-70px" top="-35px">
+          <Image 
+            src="/friend-day-heart.svg"
+            alt="Heart"
+            width={75}
+            height={75}
+          />
+        </Box>
+      </Box>
+      <Text fontSize={{ base: 'md', md: '2xl' }} fontWeight="semibold" color="white">
+        COMING SOON
+      </Text>
+    </VStack>
   );
 };
 
