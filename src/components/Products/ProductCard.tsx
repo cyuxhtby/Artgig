@@ -73,15 +73,39 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <CardBody>
         <Box borderRadius="lg" overflow="hidden">
           {!assetContract ? (
-            <Image objectFit="contain" src={src} alt={alt} borderRadius="lg" width="100%" height="100%" />
+            <AspectRatio ratio={1}>
+              <Skeleton
+                isLoaded={false}
+                startColor="gray.500"
+                endColor="gray.700"
+              />
+            </AspectRatio>
           ) : !hasCheckedNFT || isLoading ? (
-            <Skeleton isLoaded={hasCheckedNFT && !isLoading} startColor="gray.500" endColor="gray.700" width="100%" height="100%" />
+            <AspectRatio ratio={1}>
+              <Skeleton
+                isLoaded={hasCheckedNFT && !isLoading}
+                startColor="gray.500"
+                endColor="gray.700"
+              />
+            </AspectRatio>
           ) : error ? (
             <Text color="red.500">Error loading NFT.</Text>
           ) : nft ? (
-            <ThirdwebNftMedia metadata={nft.metadata} width="100%" height="100%" style={{ borderRadius: '10px' }}/>
+            <ThirdwebNftMedia
+              metadata={nft.metadata}
+              style={{ width: "100%", height: "auto", borderRadius: "10px" }}
+            /> 
           ) : (
-            <Image objectFit="contain" src={src} alt={alt} borderRadius="lg" width="100%" height="100%" />
+            <AspectRatio ratio={1}>
+              <Box width="100%" height="100%">
+                <Image
+                  objectFit="contain"
+                  src={src}
+                  alt={alt}
+                  borderRadius="lg"
+                />
+              </Box>
+            </AspectRatio>
           )}
         </Box>
         <Flex direction="column" gap={2} mt={4}>
@@ -90,7 +114,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <Heading size="md">{title}</Heading>
             </LinkOverlay>
           </Flex>
-         
         </Flex>
       </CardBody>
     </Card>
