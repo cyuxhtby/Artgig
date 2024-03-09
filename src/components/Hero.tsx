@@ -11,21 +11,16 @@ const Hero = () => {
       spacing={4}
     >
       <Box as="span" position="relative" display="inline-flex" alignItems="center" justifyContent="center">
-        <Text fontSize={{ base: '4xl', md: '6xl' }} fontWeight="bold" color="white">
-          FRIEND DAY
-        </Text>
-        <Box as="span" position="absolute" right="-70px" top="-35px">
+        <Box as="span" position="absolute" right="-60px" top="-35px">
           <Image 
-            src="/friend-day-heart.svg"
-            alt="Heart"
-            width={75}
-            height={75}
+            src="/shake.png"
+            alt="handshake"
+            width={95}
+            height={95}
+            style={{ filter: "invert(1)" }}
           />
         </Box>
       </Box>
-      <Text fontSize={{ base: 'md', md: '2xl' }} fontWeight="semibold" color="white">
-        COMING SOON
-      </Text>
     </VStack>
   );
 };
